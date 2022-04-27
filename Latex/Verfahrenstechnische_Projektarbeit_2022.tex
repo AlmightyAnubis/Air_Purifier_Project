@@ -1,0 +1,520 @@
+\documentclass[12pt,a4paper,bibtotocnumbered,liststotocnumbered]{scrreprt}
+\usepackage[utf8x]{inputenc}
+\usepackage{color}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage[scaled]{uarial}
+\usepackage{amsmath}
+\usepackage[printonlyused]{acronym}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{rotating}
+
+\usepackage{float}
+\setlength{\parindent}{0pt}
+\usepackage{url}
+\urlstyle{same}
+\usepackage{enumitem}
+
+\usepackage{pdflscape}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{chemfig}
+\usepackage{cancel}
+\usepackage{caption}
+\usepackage{mhchem}
+\usepackage{svg}
+
+
+%Tikx -----------------------------------
+\usepackage{tikz}
+\usetikzlibrary{arrows,arrows.meta,intersections,shapes,positioning,shadows, decorations, snakes}
+% \tikzexternalize ,external 
+\tikzset{%
+  >={Latex[width=2mm,length=2mm]},
+  % Specifications for style of nodes:
+  			every node/.style={align=center, fill = white},
+            base/.style = {rectangle, rounded corners, draw=black, minimum width=3cm, minimum height=1cm, text centered, font=\sffamily},
+            test/.style = {rectangle, rounded corners, draw=black, text centered, minimum width=2.5cm, minimum height=1cm, font=\sffamily]},
+            entscheidung/.style = {diamond, rounded corners, draw=black, text centered, minimum width=2.5cm, minimum height=1cm, font=\sffamily},
+  			blue/.style = {base, fill=blue!30, very thick},
+      		 red/.style = {base, fill=red!30},
+  		   green/.style = {test, fill=green!30},
+          orange/.style = {base, fill=orange!15},
+          	bier/.style = {base, fill=yellow!30, very thick},      
+             mix/.style = {base,circle, minimum width=4mm, fill=green!15},
+    }
+    
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+
+%\color{
+\definecolor{lightgray}{gray}{0.95}
+\definecolor{latex}{rgb}{0,0.2,0.4}
+\definecolor{befehle}{rgb}{0.55,0,0}
+\definecolor{orange}{rgb}{1,0.41,0.13}
+%}
+
+%\color[rgb]{1,1,0.88}
+
+
+
+
+%NatBib
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{unsrt}
+\usepackage{ragged2e}
+
+%-------------------------------------------
+%\fancypagestyle{plain}{ %
+%  \fancyhf{} % remove everything
+%  \renewcommand{\headrulewidth}{0pt} % remove lines as well
+%  \renewcommand{\footrulewidth}{0pt}
+%}
+
+
+\usepackage{fancyhdr}
+
+
+\renewcommand{\rmdefault}{ptm}
+\newcommand{\underlined}[1]{\underline{\underline{#1}}}
+
+%--------------------------------------------------------------------------
+%Einheitenimplementierung
+\usepackage{siunitx}
+\sisetup{
+  locale = US,
+  per-mode = symbol,
+  overwrite-functions = true
+}
+
+\NewDocumentCommand\DeclareNewQuantity{mmm}{
+  \DeclareSIUnit{#1}{#3}
+  \DeclareDocumentCommand{#2}{O{}m}{\SI[##1]{##2}{#1}}
+}
+
+%\newcommand{\tief}[1]{_{\, \mathsf{#1}}}
+%\newcommand{\R}{\SI{8,314}{\kilo\gram\square\meter\per\square\second\per\mol\per\kelvin}}
+\newcommand{\note}[1]{(\textit{\textbf{Anmerkung:} #1})}
+
+
+
+\DeclareNewQuantity{\helpa}{\dichte}{\gram\per\cubic\centi\meter}
+\DeclareNewQuantity{\helpb}{\Dichte}{\kilo\gram\per\cubic\meter}
+\DeclareNewQuantity{\helpc}{\speed}{\meter\per\second}
+\DeclareNewQuantity{\helpd}{\accel}{\meter\per\square\second}
+%\DeclareNewQuantity{\helpe}{}{}
+%\DeclareNewQuantity{\helpf}{}{}
+%\DeclareNewQuantity{\helpg}{}{}
+%\DeclareNewQuantity{\helph}{}{}
+%\DeclareNewQuantity{\helpi}{}{}
+%\DeclareNewQuantity{\helpj}{}{}
+%\DeclareNewQuantity{\helpk}{}{}
+%\DeclareNewQuantity{\helpl}{}{}
+%\DeclareNewQuantity{\helpm}{}{}
+%\DeclareNewQuantity{\helpn}{}{}
+%\DeclareNewQuantity{\helpo}{}{}
+%\DeclareNewQuantity{\helpp}{}{}
+
+
+
+
+
+%-------------------------------------------------------------------------
+
+\definecolor{Grau}{gray}{0.5}
+
+\definecolor{lightblue}{RGB}{80,100,200}
+\definecolor{lightgreen}{RGB}{200,255,200}
+\definecolor{lightgray}{RGB}{200,200,200}
+\definecolor{lightred}{RGB}{255,200,200}
+\definecolor{lightyellow}{RGB}{255,255,200}
+
+\transparent{0.5}
+\newcommand{\green}[1]{\colorbox{lightgreen}{$\displaystyle #1$}}
+\newcommand{\black}[1]{\colorbox{lightgray}{$\displaystyle #1$}}
+\newcommand{\red}[1]{\colorbox{lightred}{$\displaystyle #1$}}
+\newcommand{\yellow}[1]{\colorbox{lightyellow}{$\displaystyle #1$}}
+
+
+
+
+%------------------------------------------------------------------------
+\usepackage{Style/classic_style}
+
+\mgrad{Master of Science}
+\institution[OVGU Magdeburg]{Otto-von-Guericke-Universität Magdeburg}
+\logo{Logo.eps}
+\title{\textbf{Luftfilteranlagen zur Reinigung von Raumluft}\\zur Bekämpfung der Ausbreitung des Corona Virus in geschlossenen Räumen}
+\author{Florian Jacob \\Kontakt: \url{florian.jacob@ovgu.de}}
+\date{\today}
+
+
+
+\usepackage{hyperref}
+
+%Dokumentvariablen
+\newcommand{\Konz}{n}
+
+\begin{document}
+\pagenumbering{Roman}
+\maketitle
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\plain
+
+
+
+\chapter{Einführung}
+
+Im Rahmen dieser Projektarbeit werden zwei Rektifikationskolonnen zur Auftrennung von Ethan/Ethen (C2) und Propan/Propen (C3) Gemischen ausgelegt und vorgestellt.
+
+Die zu trennenden Stoffe entstehen als Produkte des Steamcracking-Prozesses, bei dem langkettige Kohlenwasserstoffe in Gegenwart von Wasserdampf in kurzkettige Kohlenwasserstoffe umgewandelt werden. Je nach Betriebsbedingungen beim Steamcracking kann die Zusammensetzung der entstehenden Produkte variieren. Eine beispielhafte Zusammensetzung zeigt \autoref{tab: Steamcracking}.
+
+% Table generated by Excel2LaTeX from sheet 'Tabelle1'
+\begin{table}[htbp]
+  \centering
+  \caption{Beispielhafte Zusammensetzung der Produkte beim Steamcracking}
+    \begin{tabular}{lll}
+    Produkt & Symbol & Anteil \\
+    Wasserstoff & H2   & 1 \\
+    Methan & CH4  & 15 \\
+    Ethan & C2H6 & 4 \\
+    Ethen & C2H4 & 29 \\
+    Ethin & C2H2 & 0,5 \\
+    Propan & C3H8 & 1 \\
+    Propen & C3H6 & 17 \\
+    Butadien & C4H6 & 4,5 \\
+    Buten & C4H8 & 4,5 \\
+    Butan & C4H10 & 0,5 \\
+    Pyrolysebenzin & CnHm & 19 \\
+    Kohlenmonoxid & CO   & 100-1000 ppm \\
+    Kohlendioxid & CO2  & 30-500 ppm \\
+    Rückstand & -    & 3,5 \\
+    \end{tabular}%
+  \label{tab: Steamcracking}%
+\end{table}%
+
+
+\chapter{Stand der Technik}
+% Detailstudien bzw. verfahrenstechnische Auslegung eines industriellen Steamcrackers.
+
+\section{Bedeutung von Ethen und Propen}
+Ethylen und Propylen sind einer der wichtigsten petrochemischen Ausgangstoffe.  Im Jahr 2019 wurden 5.022 kT Ethylen und 4.490 kT Propylen In Deutschland verbraucht. \cite{Hohmann} Diese Primärchemikalien wurden vor allem zur Herstellung von Kunststoffen weiterverarbeitet. Einige Anwendungsbeispiele können \autoref{Abb: Anwendungsbeispiele} gelesen werden. 
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.8 \textwidth]{Anwendungsbeispiele.png}
+\caption{Anwendungsbeispiele der Petrochemie \cite{Kuhlmann}}
+\label{Abb: Anwendungsbeispiele}
+\end{center}
+\end{figure}
+
+\section{Erzeugung durch Steamcracken}
+
+Beim Steamcracken werden große Kohlenwasserstoffe, wie Naphta, thermisch zu kurzkettigeren Ketten gespalten. Folgende Schritte bilden dieses thermische Trennungsverfahren.  
+\begin{enumerate}
+\item Spaltofen: Das Naphtha wird mit Wasserdampf auf 600°C vorerhitzt. Der Spaltvorgang findet dann in einer Rohrschlange bei 800-850°C statt.
+\item Quencher: Das Spaltgas wird schlagartig auf 400°C abgekühlt und zusätzlich wird mit Quenchöl die Temperatur auf 200°C . 
+\item Waschturm: Das Gas wird stufenweise abgekühlt, zur Trennung von Pyrolyseöle, Prozesswasser und Teile des Pyrolysebenzins. 
+\item Rohgasvorbereitung: Das Rohgas muss von möglichen Giften und korrosiven Stoffen gereinigt werden, damit die Rektifikationsschritte effektiv stattfinden können und damit die Anlage möglichst lange hält. Als erstes wird es auf 15 bar verdichtet und $CO_2$ und $H_2S$ werden mit Natronlauge in der Säurewäsche entfernt. Nach einer anschließenden Verdichtung auf 33 bar, werden Wasserdampfreste über Molekularsiebe auskondensiert. Das Gemisch erreicht dabei eine Temperatur von bis zu – 60°C. 
+\item Destillationskolonne: Das Gas wird in Einzelverbindungen getrennt. Dabei werden die Ethen- und Propenfraktionen getrennt. 
+\item Abschließend, werden die Alkine extrahiert (Ethenfraktion) bzw. Hydriert (Propylenfraktion). Dessen Verteilung und Menge hängt von dem Rohrstoff, dem Druck und die Temperatur ab. 
+\item Im letzten Schritt werden mittels Rektifikation die Zielprodukte, Alkene, von den Alkanen getrennt. Die Alkane werden dann zurück zum Anfang des Prozesses geschickt. \cite{Weinkraut}
+\end{enumerate}
+
+Diese Methode zur Gewinnung der Hauptbestandteile der Kunststoffproduktion ist seit Jahrzenten etabliert. Jedoch ist die fossile Herkunft des Rohstoffes und die große CO2 Mengen die dabei entstehen, einen Grund für die Optimierung und Ersetzung dieser Prozesse. 
+Einige Prominente Entwicklung zur Optimierung des Steamcracken Prozesses sind:
+\begin{itemize}
+\item Verringerung des Brennstoffbedarfs durch Keramikbeschichtung der Rohrwände, was die Verkokung vermindert. \cite{Tao}
+\item Verbesserung der Stofftrennung, z.B. durch Membranverfahren
+\item Senkung der Betriebstemperatur durch einsetzen von Katalysatoren 
+\item Carbon Capture Technologien zur Verringerung der ausgestoßenen Emissionen \cite{Schneider}
+\end{itemize}
+
+Alternative Möglichkeiten zur Gewinnung der Alkene sind:
+\begin{itemize}
+\item Chemisches Recyclen von Kunststoffabfällen
+\begin{itemize}
+\item Müllverbrennung: Es wird thermische Energie wieder gewonnen und es entsteht $CO_2$ und $H_2$. Diese Gase können dann zu Methan synthetisiert werden, welches wie in \autoref{Abb: Methoden zur Synthese} zu sehen ist, wieder zu Propen verarbeitet werden kann.
+\item Gasifizierung: Ähnlich wie bei der Mull Verbrennung, können die entstandene Flüchtigen ($H_2$ und $CO$) als Synthesegas für die Kunststoffherstellung verwendet werden. 
+\item Pyrolyse: Die Polymere werden in dessen Ursprungspolymeren wieder zersetzt, um neu eingesetzt zu werden.
+\end{itemize}
+\item Katalytische Verfahren \cite{Schneider}
+\end{itemize}
+
+Die explizite Herstellung von Propen wurde, durch dessen Hauptrolle in der wachsenden Kunststoffindustrie, in den letzten Jahrzehnten gründlich erforscht. Für die \glqq On-Purpose\grqq Route der Propen Herstellung, gibt es die klassische oben erwähnte Methode, welche auf fossile Brennstoffe basiert. Jedoch werden Alternative basierend auf nachhaltigen Rohstoffen entwickelt. Eine Schematische Darstellung wurde in der Dissertation \cite{Weinkraut} erstellt und ist in \autoref{Abb: Methoden zur Synthese} zu sehen. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.8 \textwidth]{Methoden_zur_Synthese_von_Propen.pdf}
+\caption{Methoden zur Synthese von Propen \cite{Weinkraut}}
+\label{Abb: Methoden zur Synthese}
+\end{center}
+\end{figure}
+
+\chapter{Die Rektifikation von Stoffgemischen}
+Zur Trennung der Gemische wird die Rektifikation genutzt, welche auf dem Prinzip der Destillation beruht. Hierbei wird die unterschiedliche Flüchtigkeit der Stoffe zur Trennung ausgenutzt. Die Rektifikation findet in meist sehr hohen Kolonnen statt, da die Trennung auf den einzelnen Böden in der Kolonne stattfindet, von denen eine Vielzahl für den Trennprozess benötigt wird.
+
+\section{Funktionsweise Rektifikationskolonne}
+Das zu trennende Flüssigkeitsgemisch wird der Kolonne zugeführt und dort zum Sieden gebracht. Der erzeugte Dampf bewegt sich in der Kolonne aufwärts, verlässt sie am Kopf und wird kondensiert. Ein Teil des Kondensates wird als Kopfprodukt abgeführt. Der andere Teil fließt als Rücklauf in die Kolonne zurück und bewegt sich als flüssige Gegenphase abwärts.
+
+Auf seinem Weg zum Kopf erfährt das im Sumpf erzeugte Dampfgemisch durch Austauschböden oder 
+Packungen in der Kolonne einen intensiven Wärme- und Stoffaustausch mit der Flüssigphase. 
+
+Zur Intensivierung der beschriebenen Wärme- und Stoffübergänge enthalten Rektifikationskolonnen Einbauten, wie z. B. Böden, Füllkörperkolonnen und geordnete Packungen, die die Kontaktzeit zwischen den Phasen verlängert und eine hohe Turbulenz der angrenzenden Phasenschichten bewirken.
+
+Dabei kondensieren die schwerer flüchtigen Komponenten der Dampfphase und reichern die Flüssigphase an. Gleichzeitig sorgt die freiwerdende Kondensationswärme für die Verdampfung der leichter flüchtigen Komponenten in der Flüssigphase.
+
+Aufgrund dieser Vorgänge in der Kolonne erhöht sich der Gehalt der Dampfphase an leichter flüchtigen 
+Komponenten vom Sumpf bis zum Kopf der Kolonne. Der Gehalt der Flüssigphase an schwerer flüchtigen Komponenten nimmt in der Gegenrichtung vom Kopf der Kolonne bis zum Sumpf zu.
+
+Sollen Flüssigkeitsgemische aus mehreren Komponenten (>2) in möglichst reine Stoffe getrennt werden, so werden hierfür mehrere Rektifikationskolonnen benötigt. 
+
+\section{Aufbau einer Rektifikationskolonne}
+Das Flüssigkeitsgemisch wird auf einer bestimmten Höhe zwischen dem Sumpf und dem Kopf der Kolonne eingespeist. Der Zulauf unterteilt die Kolonne in den Verstärkungs- und den Abtriebsteil. Die Temperatur des zugeführten Gemisches liegt oft am Siedepunkt der Mischung.
+
+Flüssigkeit rieselt über die Einbauten nach unten, wobei sie an der leichterflüchtigen Komponente verarmt und der Gehalt der schwererflüchtigen Komponenten zunimmt. Im Sumpf wird ein Teil des herunter strömenden Konzentrats als schwerflüchtige Fraktion aus der Kolonne entnommen. Ein anderer Teil wird durch eine Heizung verdampft. 
+
+Der verdampfte Anteil steigt als Brüden in der Kolonne auf und reichert sich im Austausch mit der herabströmenden Flüssigkeit mit der leichterflüchtigen an. Die leichtflüchtigen Brüden werden am Kopf der Kolonne aus dieser abgezogen und im Kondensator verflüssigt. 
+
+Ein Teil wird als leichtflüchtige Fraktion aus dem System abgezweigt, ein anderer Teil wird als Rücklauf oben in die Kolonne gegeben. Dieser Rücklauf ist notwendig, um einen Stoffaustausch zwischen der Dampfphase und herabströmender Phase zu ermöglichen und damit eine Anreicherung zu erzielen.
+
+
+\section{Arten von Einbauten}
+Die prinzipielle Kolonne gliedert sich durch ihre Einbauten in die Packungskolonne sowie die Bodenkolonne. Charakteristisch für die Bodenkolonnen sind die jeweils eingebauten Böden: Glockenboden, Siebboden, Ventilboden und Tunnelboden, welche in Abbildung 1 veranschaulicht sind.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.8 \textwidth]{Kolonnenboeden.png}
+\caption{Bodeneinbauten \cite{chemie_schule}}
+\label{Abb: Methoden zur Synthese}
+\end{center}
+\end{figure}
+
+
+Der Glockenboden erhält seinen Zulauf durch einen Zulaufstutzen, der die Flüssigphase über die gesamte Fläche verteilt. Mittels des Ablaufstutzen wird die Flüssigphase in den folgenden Boden geleitet. Die Dampfphase tritt über die Glockenhälse, auch als Kamin bezeichnet, ein und gelangt durch eingelassene Schlitze fein verteilt in die Flüssigphase. Dabei wird diese aufgewirbelt und am herabfließen gehindert, wodurch eine Sprudelschicht ausgebildet wird, in der der Stoffaustausch stattfindet. Bautechnisch befindet sich neben dem Einlaufstutzen ein Einlaufwehr, welches die Höhe der Flüssigkeitsschicht definiert. Der verhältnismäßig aufwendige und kostenintensive Aufbau gewährleistet jedoch auch bei schwankenden Dampflasten einen effektiven Einsatz. Tunnelböden besitzen das gleiche Funktionsprinzip wie die eben beschriebenen Glockenböden. Anstelle der vielen Glocken befinden sich hier nur wenige langgestreckte Tunnel mit Schlitzen am Boden. Die einfachste Bauform ist der Siebboden. Dieser besteht aus einer Lochplatte, über die die Flüssigkeit strömt. Der aufsteigende Dampf verhindert ein Abfließen der Flüssigphase durch die Löcher. Auch in diesem Fall wird dabei eine Sprudelschicht ausgebildet. Durch Schwankungen der Dampflast kann stellenweise die Flüssigphase über die Löcher abfließen und der Trenneffekt bricht zusammen. Die Grundlage der Ventilböden stellt das Siebbodenprinzip dar. Durch die Dampflast werden die Klappdeckel nach oben gedrückt und ermöglichen, dass die Dampfphase in die Flüssigphase eindringen kann. Sinkt die Dampflast, verschließen sich die Deckel, wodurch die Flüssigphase daran gehindert wird, durch die Löcher abfließen zu können. \cite{Funktion_und_Aufbau}, \cite{Brehm},\cite{Schneider2}
+
+Packungskolonnen, als zweite grundlegende Kolonnenart, gewährleisten einen kontinuierlichen Stoffaustauch über eine Schüttung von Füllkörpern bzw. eine strukturierte Anordnung von Gazen/Blechen. Allgemein findet bei den Packungskolonnen, im Vergleich zu den Bodenkolonnen, kein stufenweiser Stoffaustausch statt. Weiterhin ist eine Gleichgewichtseinstellung nicht erwünscht, da darüber hinaus keine weitere Trennung stattfinden würde. Die Füllkörperschicht liegt auf einem Rost auf und ist in den meisten Fällen nicht bis ganz oben gefüllt. Die abnehmende Befüllung zum Kopfteil hin, soll die Ausbildung einer Beruhigungszone gewährleisten, in der sich die vom Dampf mitgerissenen Flüssigkeitstropfen abscheiden lassen. Packungskolonnen haben seltener Probleme mit der Dampfverteilung, da dieser sich in den freien Zwischenräumen ausbreitet. Wesentlich problematischer ist die Flüssigphasenverteilung. Diese muss über den gesamten Querschnitt verteilt werden sowie gleichzeitig über die gesamte Kolonne erhalten bleiben. Mit dem Durchlaufen der Schüttungen ist eine Randgängigkeit der Flüssigphase zu beobachten. Dies bedeutet, dass sich die Flüssighase mit zunehmender Strecke an der Kolonnenwand sammelt. Die aufsteigende Gasphase hingegen durchströmt die Kolonne als Zentralstrom und der Stoffaustausch wird über den geminderten Kontakt stark gehemmt. Um diesem Phänomen entgegenzuwirken, kommen Flüssigkeitssammler und -verteiler zum Einsatz. Zusätzlich werden in den Packungskolonnen Wandabweiser eingebaut, die die Flüssigphase in der Kolonne wieder neu verteilen sollen. Füllkörper in einer regellosen Schüttung werden als ungeordnete Packung bezeichnet. Die Bandbreite der Form der einzelnen Körper ist in \autoref{Abb: Fuellkoerper} auszugsweise dargestellt.
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.8 \textwidth]{Kolonnenfuellkoerper.pdf}
+\caption{Fullkörperformen (M = Metall, P = Kunststoff, K = Keramik); a Raschig-Ring (M,K), b Pall-Ring (M), c Pall-Ring (P), d VSP-Fullkörper (M), e VSP-Fullkörper (P), f Top-Pak (M), g Hackette (P), h Igel-Fullkörper (P), i Interpack-Sattel (M), k Novalox-Sattel (P), l Berl-Sattel(K), m Intalox-Sattel (M) \cite{Grassmann}}
+\label{Abb: Fuellkoerper}
+\end{center}
+\end{figure}
+
+
+Als Material finden Metall, Glas, Keramik, und Kunststoff Anwendung. Für eine Intensivierung des Dampfphasen-Flüssigphasen-Kontaktes sowie einer Vergrößerung der Oberfläche sind die Seitenflächen der einzelnen Körper vielseitig aufgebrochen. Kriterien für die Materialauswahl der Füllkörper sind:
+\begin{itemize}
+\item Temperaturbeständigkeit,
+\item Korrosionsbeständigkeit,
+\item gute Benetzbarkeit sowie
+\item geringe Anschaffungskosten. 
+\end{itemize}
+
+Für geordnete Packungen werden Metallgewebe oder Bleche gefaltet, gewickelt oder eine Kombination aus beiden Verfahren angewendet. Im Vergleich zu der ungeordneten Packung kann die Dampf- und Flüssigphase viel intensiver gelenkt werden. Diese Intensivierung bewirkt einen verbesserten Kontakt, der den Stoffaustausch optimiert. \cite{Funktion_und_Aufbau}, \cite{Brehm},\cite{Schneider2}
+
+\chapter{Auslegung der Kolonne} 
+\section{Gegebene Werte}
+Komponente 1: Ethan\\
+Komponente 2: Ethen\\
+\begin{tabular}{ll}
+Einlaufkonz der 1. Komponente:& $x\tief{1,in} = 1/8$\\
+Sumpfkonz der 1. Komponente: &$x\tief{1,S} = 0.001$\\
+Kopfkonz der 1. Komponente: &$x\tief{1,K} = 0.999$ \\ \\
+\end{tabular}
+
+
+Komponente 1: Propen\\
+Komponente 2: Propan\\
+\begin{tabular}{ll}
+Einlaufkonz der 1. Komponente:& $x\tief{1,in} = 1/18$\\
+Sumpfkonz der 1. Komponente: &$x\tief{1,S} = 0.001$\\
+Kopfkonz der 1. Komponente: &$x\tief{1,K} = 0.999$ \\ \\
+\end{tabular}
+\section{Kostenabwägung der Kolonnenböden}
+Da genaue Daten zu den Kosten schwer oder nur nach Anfrage auf ein Fertigungsangebot erhalten werden können, müssen für die Auslegung allgemeine Angaben genutzt werden. Für den Vergleich wurde hierfür \cite{Schoenbucher2002} herangezogen. Die für die Abwägung genutzte Tabelle ist in \autoref{tab:vergleich} zu sehen.\\
+Da die zu trennenden Stoffgemische  keine speziellen Anforderungen aufweisen, sollten sie ein möglichst günstiges Verhältnis von Verstärungsverhältnis zu relativen Kosten besitzen, da das die Betriebskosten und die Anschaffungskosten minimiert. Eine sehr gute Option ist hier der Regensiebboden, da er nur die Hälfte eines Glockenbodens kostet und gleichzeitig ein ähnlich hohes Verstärkungsverhältnis besitzt. Einziger Nachteil ist der eingeschränkte Arbeitsbereich. Da der Prozess aber relativ kontinuierlich läuft, sollte das keine weiteren Probleme erzeugen. Auch der Druckverlust ist im Verhältnis zu den anderen Böden sehr günstig, was auch kosten im Betrieb und in der Auslegung bei der Druckfestigkeit spart.
+% Table generated by Excel2LaTeX from sheet 'Tabelle1'
+\begin{sidewaystable}[htbp]
+  \centering
+  \caption{Vergleich verschiedener Kolonnenböden, entnommen aus \cite{Schoenbucher2002}}
+    \begin{tabular}{p{3cm}p{3cm}p{3.5cm}p{3.5cm}p{2cm}p{2.5cm}p{2.5cm}p{2.5cm}}
+    \hline
+    Bodentyp & Arbeitsbereich $V_{min}/V_{max}$ & Verstärkungsverhaltnis (85 \% max Last) & Verstärkungsverhaltnis (im Gesammtbereich) & Flexibilität & Druckverlust (85 \% max Last) & Kosten bezogen auf Glockenboden & Gewicht / Bodenfläche \\
+    \hline
+    Glockenboden (+)  & 4 bis 5  & 0.8  & 0.6 bis 0.8  & 80   & 4.5 bis 8.0  & 1    & 900 bis 1400 \\
+    Tunnelboden (+)  & 3 bis 4  & 0.6 bis 0.7  & 0.55 bis 0.65  & 50   & 5.0 bis 8.5  & 0.8  & 800 bis 1400 \\
+    Thormann-Boden  & 4 bis 6 & 0.85 & 0.7 bis 0.9  & 80   & 4.5 bis 6.0  & 0.8  & 400 bis 700 \\
+    Ventilboden (Koch)  & 5 bis 8  & 0.8  & 0.7 bis 0.9  & 80   & 4.5 bis 6.0  & 0.7  & 400 bis 700 \\
+    Ventilboden (Glitsch) (+)  & 5 bis 8  & 0.8  & 0.7 bis 0.9  & 80   & 4.0 bis 6.0  & 0.7  & 400 bis 700 \\
+    Siebboden (-) & 2 bis 3  & 0.8  & 0.7 bis 0.8  & 55   & 3.0 bis 5.0 & 0.7  & 300 bis 400 \\
+    Kittel-Boden & 2 bis 3  & 0.8  & 0.7 bis 0.8  & 40   & 2.0 bis 5.0  & 0.6  & 300 bis 500 \\
+    Regensiebboden (+)  & 2 bis 3  & 0.75 & 0.6 bis 0.8  & 10   & 3.0 bis 4.0  & 0.5  & 300 bis 500 \\
+    Turbogrid-Boden (+) & 1.5 bis 2.5  & 0.7  & 0.6 bis 0.8  & 10   & 2.5 bis 4.0  & 0.5  & 300 bis 500 \\
+    \hline
+    \\
+    \multicolumn{5}{l}{Flexibilität - jener Teil des Arbeitsbereichs, in dem das Verstärkungsverhältnis nur ± 15\% schwankt}\\
+ \multicolumn{5}{l}{(+) Boden arbeitet gut bei verschmutzten Flüssigkeiten}\\
+ \multicolumn{5}{l}{(-) Boden arbeitet schlecht bei verschmutzten Flüssigkeiten}\\
+ \multicolumn{5}{l}{$V_{max}$: Gas-(Dampf-)belastung an der oberen Grenze des Arbeitsbereichs}\\
+ \multicolumn{5}{l}{ $V_{min}$ Gas-(Dampf-)belastung an der unteren Grenze des Arbeitsbereichs}\\
+    \end{tabular}%
+  \label{tab:vergleich}%
+\end{sidewaystable}%
+
+
+
+\chapter{Berechnungsgrundlagen}
+Das McCable-Thiele-Verfahren ist eine grafische Methode zur Bestimmung der Anzahl an benötigten Trennstufen. Dabei werden, anhand der Mengenbilanz, Geraden in ein Gleichgewichtsdiagramm eingezeichnet, woraus ein Stufensystem gebildet wird. Die Anzahl der benötigten Trennstufen kann anschließend durch zählen der eingezeichneten Stufen bestimmt werden. Anwendbar ist dieses Verfahren ausschließlich bei binären Stoffsystemen. \cite{Sievers}
+
+Folgende Annahmen werden dabei getroffen:
+\begin{itemize}
+\item Die Enthalpien werden vernachlässigt 
+\item Vernachlässigung wird der Einfluss von kinetischen und potenziellen Energien
+\item Adiabater Betrieb der Kolonen 
+\item Die bei der Kondensation freigewordene Wärme wird vollständig für die Verdampfung genutzt 
+\item Druckabfall über der Kolonne wird als konstant angenommen
+\item Es verdampft die verhältnismäßig gleich hohe Energiemenge wie bei der Kondensation
+\item Molare Dampf und Flüssigkeitsströme bleiben unverändert längs eines Säulenabschnittes \cite{Sievers}.
+\end{itemize}
+
+
+
+Eine Rektifiziersäule kann in einen Verstärkungsteil und einen Abtriebsteil unterteilt werden. Dabei werden im Verstärkungsteil mehrheitlich der flüchtigere Stoff angesammelt, wobei im Abtriebteil Stoff mit hören Siedetemperaturen angereichert werden \cite{Sievers}. 
+
+Anhand der Aufgestellten Annahmen, kann nun die Verstärkersäule wie folgt Bilanziert werden:
+
+
+
+Molstrombilanz
+\begin{equation}
+\dot{n}\tief{D} = \dot{n}\tief{F} + \dot{n}\tief{P}
+\end{equation}
+Stoffmengenbilanz
+\begin{equation}
+\dot{n}\tief{D}\cdot y = \dot{n}\tief{F} \cdot x + \dot{n}\tief{P} \cdot x\tief{P}
+\end{equation}
+Energiebilanz
+\begin{equation}
+\dot{n}\tief{D}\cdot h\tief{D} = \dot{n}\tief{F} \cdot  h\tief{F} + \dot{n}\tief{P} \cdot h\tief{P} + \dot{Q}\tief{K}
+\end{equation}
+
+Mit der Stoffmengenbilanz kann nun Verstärkungsgerade bestimmt werden:
+
+Rücklaufverhältnis
+\begin{equation}
+\nu = \frac{\dot{n}\tief{F}}{\dot{n}\tief{P}} = \frac{x\tief{P} - y}{y - x}
+\end{equation}
+Verstärkungsgerade
+\begin{equation}
+y = \frac{\nu}{\nu + 1} \cdot x + \frac{1}{\nu + 1} \cdot x\tief{P}
+\end{equation}
+
+Nun wird die Abtriebssäule bilanziert, bei der die gleichen Bedingungen wie bei der Verstärkungsgerade gelten:
+Molstrombilanz
+\begin{equation}
+\dot{n}\tief{F} = \dot{n}\tief{D} + \dot{n}\tief{S}
+\end{equation}
+Stoffmengenbilanz
+\begin{equation}
+\dot{n}\tief{F} \cdot x= \dot{n}\tief{D} \cdot y + \dot{n}\tief{S} \cdot x\tief{S}
+\end{equation}
+Energiebilanz
+\begin{equation}
+\dot{n}\tief{F} \cdot h\tief{F}'' + \dot{Q}\tief{B}= \dot{n}\tief{D} \cdot h\tief{D}'  + \dot{n}\tief{S} \cdot h\tief{S}'
+\end{equation}
+Woraus wie folgt die Abtriebsgerade bestimmt:
+\begin{equation}
+y = \frac{\nu}{\nu - 1} \cdot x + \frac{1}{\nu - 1} \cdot x\tief{S}
+\end{equation}
+
+
+
+Zur Bestimmung der Trennstufen werden beide Geraden eingezeichnet. Dabei schneidet die Verstärkungsgerade den Punkt (1/1) und die Abtriebsgerade den Punkt (0/0) im Gleichgewichtsdiagramm. An dem Schnittpunkt der Geraden werden nun mehrfach abwechselnd waagrechte oder senkrechte Linien gezogen, die an dem Schnittpunkt mit der Gleichgewichtskurve oder den eingezeichneten geraden Stufenweise fortlaufend eingezeichnet werden. \cite{Sievers}
+
+
+\newpage
+\section{Ergebnis der Matlab Berechnungen}
+Für Ethan/Ethen:
+\begin{itemize}
+\item Temperatur Kopf: -58.32  °C  Temperatur Sumpf: -39.14 °C
+\item Stufenzahl Kopf: 18 Stufenzahl mit Einberechnung des  Wirkungsgrads: 24
+\item Stufenzahl Sumpf: 19 Stufenzahl mit Einberechnung des  Wirkungsgrads: 26
+\item Kühlung Kopf: 12.1 MW  Heizung Sumpf: 8.8 MW
+\item Kolonnendurchmesser: 5.0287 m
+\item Wehrlänge: 3.6543 m
+\item Segmenthöhe: 0.78699 m
+\item Wehrbelastung: 18.9062 l/(sm)
+\item Wehrüberlaufhöhe: 20.0842 mm
+\item Bodenabstände: 420.1116 mm $\rightarrow$ gewählt 500 mm
+\end{itemize}
+ $\rightarrow$ Kolonnenhöhe: 18.5 m
+ungefähre jährliche Energiekosten (22.2  ct/kWh im Großhandel \cite{Strompreis}):  40 Mio. €
+ 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.8 \textwidth]{C2_Schnitt.pdf}
+\caption{Kolonne für die Trennung des C2 Schnitts}
+\label{Abb: C2_Schnitt}
+\end{center}
+\end{figure}
+
+\newpage
+Für Propan/Propen:
+\begin{itemize}
+\item Temperatur Kopf: 35.8914 °C  
+\item Temperatur Sumpf: 43.986°C
+\item Stufenzahl Kopf: 51  Stufenzahl mit Einberechnung des  Wirkungsgrads: 68
+\item Stufenzahl Sumpf: 62  Stufenzahl mit Einberechnung des  Wirkungsgrads: 83
+\item Kühlung Kopf: 20.83 MW  Heizung Sumpf: 20.99 MW
+\item Kolonnendurchmesser: 11.1057 m
+\item Wehrlänge: 8.0705 m
+\item Segmenthöhe: 1.738 m
+\item Wehrbelastung: 26.3125 l/(sm)
+\item Wehrüberlaufhöhe: 25.0358 mm
+\item Bodenabstände: 440.1608 mm $\rightarrow$ gewählt 500 mm
+\end{itemize}
+
+ $\rightarrow$ Kolonnenhöhe: 56.5 m
+ungefähre jährliche Energiekosten (22.2  ct/kWh im Großhandel \cite{Strompreis}):  100 Mio. €
+ 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.8 \textwidth]{C3_Schnitt.pdf}
+\caption{Kolonne für die Trennung des C3 Schnitts}
+\label{Abb: C3_Schnitt}
+\end{center}
+\end{figure}
+
+\section{Zusammenfassung}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =1 \textwidth]{Zusammenfassungsbild.jpeg}
+\caption{Graphische Darstellung der Kolonnen}
+\label{Abb: C3_Schnitt}
+\end{center}
+\end{figure}
+
+
+
+
+\newpage
+\RaggedRight
+\bibliography{Bibliothek}
+
+
+\listoffigures
+
+\listoftables
+
+
+
+
+\end{document}

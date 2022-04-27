@@ -1,0 +1,80 @@
+% Definition der Hauptfarbe-Farbe
+\definecolor{Hauptfarbe}{RGB}{148 22 128}
+\graphicspath{{../Grafiken/}}
+\setlength{\headheight}{15.2pt}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[onehalfspacing]{setspace}
+
+\newcommand{\institution}[2][OVGU Magdeburg]{\def\@institutionlong{#2} \def\@institutionshort{#1}}
+\newcommand{\bgrad}[1]{\def\@bGrad{#1}}
+\newcommand{\bgrade}[1]{\def\@bGrade{#1}}
+\newcommand{\mgrad}[1]{\def\@mGrad{#1}}
+\newcommand{\mgrade}[1]{\def\@mGrade{#1}}
+\newcommand{\logo}[1]{\def\@Logo{#1}}
+\newcommand{\supervisor}[1]{\def\@sperv{#1}}
+\newcommand{\secondsupervisor}[1]{\def\@secsperv{#1}}
+\newcommand{\gutachter}[1]{\def\@Erstbetreuer{#1}}
+\newcommand{\zweitgutachter}[1]{\def\@Zweitbetreuer{#1}}
+\newcommand{\tief }[1]{_{\: \mathsf{#1}}}
+
+\renewcommand{\maketitle}{
+\begin{titlepage}
+	\centering
+	\@ifundefined{@Logo}{}{\includegraphics[width=0.5\textwidth]{\@Logo}}\par\vspace*{1cm}
+	{\scshape\LARGE \@ifundefined{@institutionlong}{}{\@institutionlong}  \par}
+	\vspace{1cm}
+	\hrule
+	\vspace{1cm}
+	\@ifundefined{@bGrad}{
+	\@ifundefined{@bGrade}{
+	\@ifundefined{@mGrad}{
+	\@ifundefined{@mGrade}{
+	 \vspace{2cm}
+	}{\huge Master's Thesis \par \vspace{1cm} \Large For obtaining the academic degree \par \@mGrade}\par\vspace*{1cm}
+	}{\huge Masterarbeit \par \vspace{1cm} \Large Zur Erlangung des akademischen Grades\par \@mGrad}\par\vspace*{1cm}
+	}{\huge Bachelor's Thesis \par \vspace{1cm} \Large For obtaining the academic degree \par \@bGrade}\par\vspace*{1cm}
+	}{\huge Bachlorarbeit \par \vspace{1cm} \Large Zur Erlangung des akademischen Grades\par \@bGrad}\par\vspace*{1cm}	
+	{\Huge \@title  \par}
+	\vspace{2cm}
+	{\Large\itshape \@author \par}
+	\vfill	
+	\large\@ifundefined{@secsperv}{
+	\large\@ifundefined{@sperv}{}{Gutachter:  \@sperv1\\}
+	}{\large\@ifundefined{@sperv}{}{Erstgutachter:  \@sperv1\\} Zweitgutachter: \@secsperv\\}		
+	\large\@ifundefined{@Zweitbetreuer}{
+	\large\@ifundefined{@Erstbetreuer}{}{Gutachter:  \@Erstbetreuer\\}
+	}{\large\@ifundefined{@Erstbetreuer}{Erstgutachter: - \\}{Erstgutachter:  \@Erstbetreuer\\} Zweitgutachter: \@Zweitbetreuer\\}	
+	\vfill
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+}
+
+
+\newcommand{\plain}{
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[CO]{\thepage}%\ von  \pageref{LastPage}
+  \fancyhead[RO]{\slshape \leftmark}
+  \fancyhead[LO]{\slshape \@institutionshort}
+  \renewcommand{\headrulewidth}{0.2pt}% Line at the header invisible 
+  \renewcommand{\footrulewidth}{0.2pt}% Line at the footer visible
+}
+\pagestyle{plain}
+}
+
+\newcommand{\Rechte}{\begin{bfseries}
+Wichtig: Dieses Dokument ist geistiges Eigentum von  \@author. Die Weitergabe ist ohne Einwilligung streng verboten und wird als Diebstahl gewertet. Insbesondere das Ausgeben der Ergebnisse als die Eigenen ist Plagiat und wird als solches geahndet.
+\end{bfseries}}
+
+\newcommand{\Rights}{\begin{bfseries}
+Important: This document is the intellectual property of \@author. It is strictly forbidden to pass it on without consent and will be treated as theft. In particular, presenting the results as one's own is plagiarism and will be punished as such.
+\end{bfseries}}
+
+
+%Erstellt von Florian Jacob
+%Alle Rechte vorbehalten
+%Freigegeben zur Nutzung an der OVGU an der Fakultät für Verfahrens- und Systemtechnik
+
