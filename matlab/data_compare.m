@@ -24,10 +24,13 @@ plot(abscheidung(:,1),scheidung1);
 plot(abscheidung(:,1),scheidung2);
 plot(abscheidung(:,1),scheidung3);
 hold off
-return
+%return
 %% Luftreiniger
 figure();
 air_purifier = cell2data(data{3});
+
+time = data{3}(:,1);
+time = datetime(time(4:end));
 
 plot(air_purifier(:,1),air_purifier(:,2),'--');
 hold on
@@ -36,11 +39,11 @@ plot(air_purifier(:,1),air_purifier(:,3),'--');
 data1 = smooth(air_purifier(:,2),0.01);
 plot(air_purifier(:,1),data1);
 
-
-
 data2 = smooth(air_purifier(:,3),0.02);
 plot(air_purifier(:,1),data2);
 hold off
+
+
 
 peak1 = max(data1);
 dataAnalyse = data1(data1<peak1*0.75);
