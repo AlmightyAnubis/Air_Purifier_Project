@@ -14,15 +14,16 @@ abscheidung = cell2data(data{1});
 plot(abscheidung(:,1),abscheidung(:,2));
 hold on
 plot(abscheidung(:,1),abscheidung(:,3));
-plot(abscheidung(:,1),(abscheidung(:,3)+abscheidung(:,2))/2);
+%plot(abscheidung(:,1),(abscheidung(:,3)+abscheidung(:,2))/2);
 %ylim([0,inf]);
 
-scheidung1 = smooth(abscheidung(:,2),0.4);
-scheidung2 = smooth(abscheidung(:,3),0.4);
-scheidung3 = smooth((abscheidung(:,3)+abscheidung(:,2))/2,0.4);
-plot(abscheidung(:,1),scheidung1);
-plot(abscheidung(:,1),scheidung2);
+scheidung1 = smooth(abscheidung(:,2),0.5);
+scheidung2 = smooth(abscheidung(:,3),0.5);
+scheidung3 = smooth((abscheidung(:,3)+abscheidung(:,2))/2,0.5);
+%plot(abscheidung(:,1),scheidung1);
+%plot(abscheidung(:,1),scheidung2);
 plot(abscheidung(:,1),scheidung3);
+%ylim([0 inf]);
 hold off
 %return
 %% Luftreiniger
@@ -42,6 +43,7 @@ plot(air_purifier(:,1),data1);
 data2 = smooth(air_purifier(:,3),0.02);
 plot(air_purifier(:,1),data2);
 hold off
+
 
 
 

@@ -35,7 +35,7 @@ switch name
 end
 
 if(contains(name,"c_{breath}"))
-    space = 2.^(-1:5);
+    space = 2.^(-1:7);
 end
 
 data = value*space;

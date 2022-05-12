@@ -24,9 +24,12 @@ function [Partikel_inhaliert_summe,c_ges] = FunctionBased(c_breath,V_ap,ap_eff,V
 
 %% Calculation
 P_add = c_breath*V_br;
+disp(P_add);
 m_0 = P_add / V_room;
 
 ventilation_Factor = (vent_eff./vent_int + V_ap*ap_eff/V_room);
+disp("Startanstieg: " + m_0 + " -> " + m_0/ventilation_Factor);
+disp("Ventilation Factor: " + ventilation_Factor * 60);
 
 if(ventilation_Factor == 0)
     c_ges = @(t) m_0 * min(t,vir_lif);

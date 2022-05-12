@@ -366,10 +366,6 @@ Die einzelnen Einflussfaktoren wurden immer mit $\frac{1}{4}$,$\frac{1}{2}$,$1$,
 
 
 
-
-
-
-
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =1 \textwidth]{V_{ap}.eps}
@@ -459,6 +455,106 @@ Der Einfluss der Viruslebensdauer ist eher gering, solange sie größer als 90 M
 \end{figure}
 
 Die Raumgröße hat einen sehr signifikanten Einfluss. Verringert sie sich, verdünnt sich die ausgeatmete Luft nicht so stark, wodurch die Partikel-Konzentration in der Luft sehr stark ansteigt. Es ist jedoch zu beachten, das sich in größeren größeren Räumen meist mehr Personen aufhalten. Das erhöht die Chance, das eine oder mehrere Personen infiziert sind und es erhöht die Anzahl sich potentiell infizierender Personen.
+
+
+\section{Vergleich mit experimentellen Daten}
+Im Rahmen eines Experiments, wurden die folgenden Kurven durchlaufen. Dadurch sollten die verschiedenen Parameter charakterisiert und quantifiziert werden. Zudem kann so auch das Modell validiert werden. Die Graphen folgen der Reihenfolge der Messungen und schließen entsprechend an den vorherigen Graphen an.
+
+(Angaben zu Raumgröße und Experimentparametern, wo? $\SI{186}{\cubic\meter}, 0.995 etc. $)
+
+\begin{figure}[H]
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width =\textwidth]{timesplit001_AG.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, nur AG läuft}
+\label{Abb: timesplit001_AG}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit002_LR.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Nur LR läuft}
+\label{Abb: timesplit002_LR}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit003_LR_AG.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, LR und AG laufen}
+\label{Abb: timesplit003_LR_AG}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit004_AG.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, nur AG läuft}
+\label{Abb: timesplit004_AG}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit005_Fenster_Tuer.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet}
+\label{Abb: timesplit005_Fenster_Tuer}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit006_Fenster_Tuer_AG.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet, AG läuft}
+\label{Abb: timesplit006_Fenster_Tuer_AG}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit007_Fenster_Tuer_LR_AG.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit,  Fenster und Tür geöffnet, LR und AG laufen}
+\label{Abb: timesplit007_Fenster_Tuer_LR_AG}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit008_LR.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, LR läuft}
+\label{Abb: timesplit008_LR}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit009_Fenster_Tuer.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet}
+\label{Abb: timesplit009_Fenster_Tuer}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width = \textwidth]{timesplit010_Fenster_Tuer_LR.eps}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet, LR läuft}
+\label{Abb: timesplit010_Fenster_Tuer_LR}
+\end{minipage}
+\end{figure}
+
+Um die Funktion anwenden zu können, müssen 3 Kriterien erfüllt sein:
+\begin{enumerate}
+\item Es müssen sich Partikel bilden.
+\item Es müssen Partikel aus dem Raum entfernt werden.
+\item Die Bildung muss zu Beginn größer sein als der Abbau. Idealerweise sollte die Anfangskonzentration 0 sein, das kann aber mit einem Offset des Exponenten gelöst werden
+\end{enumerate}
+Diese Bedingungen sind für \autoref{Abb: timesplit003_LR_AG} und \ref{Abb: timesplit006_Fenster_Tuer_AG} erfüllt.
+Aus den anderen Funktionen lassen sich jedoch andere Parameter ablesen. Aus \autoref{Abb: timesplit001_AG} kann die Partikelbildung durch Aerosol Generator (AG) berechnet werden. Es ist aber zu beachten, das die Werte umd fast 25\% voneinander abweichen. Dafür muss der Anstieg der Partikeldichte mit dem Raumvolumen multipliziert werden:
+\begin{equation}
+\dot{n} = c\tief{t} \cdot V\tief{room} 
+\end{equation}
+Damit erhält man eine Partikelbildung von 930 bzw. 1162 Partikeln pro Sekunde je nach Messkurve. Geht man von einem Standard Atemvolumen von $V\tief{breath} = \SI{5}{\liter\per\minute}$  aus, so entspricht das einer Konzentration von 11 160 bis 13 950 Partikeln pro Liter Atemluft. 
+Damit lassen sich nun die Daten aus \autoref{Abb: timesplit003_LR_AG} validieren. Nach dem Modell müsste der Parameter b sich ergeben zu:
+\begin{align}
+b &= \frac{1000/\SI{3600}{\cubic\meter\per\second}   \cdot  0.995}{\SI{186}{\cubic\meter}}\\
+&= \SI{0.001486}{\per\second} \\
+&= \SI{0.089158}{\per\minute}
+\end{align}
+Dieser Wert liegt ca. 25\% unterhalb des Mittelwerts der Parameter der durch die Fits gebildeten Funktion. Das kann verschiedene Gründe haben. Zum einen sind die Schwankungen der Messdaten relativ hoch, so das es hier zu Fehlern gekommen sein könnte. Allein zwischen den Parametern der einzelnen Funktionen gibt es eine Abweichung von fast 40\%. Zum anderen könnte die Annahme der idealen Durchmischung, also des 1-D-Modells, nicht ganz die Wirklichkeit widerspiegeln. Gerade bei einer so hohen Konzentration durch den Aerosolgenerator können sich räumlich Gradienten ausbilden, die die Messdaten verfälschen.
+\begin{align}
+a1 &= \frac{\SI{11160}{particle\per\liter}   \cdot   5/\SI{60}{\liter\per\second}}{\SI{186}{\cubic\meter}}\\
+&= \SI{5}{particle\per\second\per\cubic\meter} \\
+a2 &= \frac{\SI{13950}{particle\per\liter}   \cdot   5/\SI{60}{\liter\per\second}}{\SI{186}{\cubic\meter}}\\
+&= \SI{6.25}{particle\per\second\per\cubic\meter} \\
+\end{align}
+Damit lässt dich nun das Verhältnis von $a$ zu $b$ bestimmen:
+\begin{align}
+\frac{a1}{b} &=   \SI{3364}{particle\per\cubic\meter} \\
+\frac{a2}{b} &=   \SI{4206}{particle\per\cubic\meter}  \\
+\frac{a1 + a2}{2 b} &=   \SI{3785}{particle\per\cubic\meter} 
+\end{align}
+
+
+
 
 
 

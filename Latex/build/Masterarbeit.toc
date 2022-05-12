@@ -13,6 +13,7 @@
 \contentsline {subsection}{\numberline {2.3.3}Einfluss der Aktivit\IeC {\"a}t}{11}{subsection.2.3.3}%
 \contentsline {subsection}{\numberline {2.3.4}Einfluss der Viruslebensdauer}{12}{subsection.2.3.4}%
 \contentsline {subsection}{\numberline {2.3.5}Einfluss der Raumgr\IeC {\"o}\IeC {\ss }e}{12}{subsection.2.3.5}%
-\contentsline {chapter}{\numberline {3}Abbildungsverzeichnis}{13}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Tabellenverzeichnis}{14}{chapter.4}%
+\contentsline {section}{\numberline {2.4}Vergleich mit experimentellen Daten}{13}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Abbildungsverzeichnis}{17}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Tabellenverzeichnis}{18}{chapter.4}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

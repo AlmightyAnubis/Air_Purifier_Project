@@ -1,30 +1,30 @@
 clear
-close all
+%close all
 clc
 %% Params
-runtime = 5 * 60 * 60;
+runtime = 0.5 * 60 * 60;
 V_breath = 5/60/1000;
 c_breath = 0.1 * 1000000;
-V_ap = 500/3600;
-ap_eff = 0.0;
-V_room = 200;
+V_ap = 1000/3600;
+ap_eff = 0.995;
+V_room = 186;
 vent_int = 20*60;
-vent_eff = 0.5;
+vent_eff = 0.0;
 vir_lif = 90*60;
 
 time = linspace(0,runtime,runtime/60+1);
 space = 2.^(-2:2);
 
 
-value = vir_lif;
-name = "vir_lif";
+value = c_breath;
+name = "c_breath";
 
 setup();
-
+figure();
 T_conc = table(time'/60,'VariableNames',{'time'});
 T_tot = table(time'/60,'VariableNames',{'time'});
 for variable=data
-    [particleSum,particlekonz] = FunctionBased(c_breath,V_ap,ap_eff,V_room,V_breath, vent_int, vent_eff, variable);
+    [particleSum,particlekonz] = FunctionBased(variable,V_ap,ap_eff,V_room,V_breath, vent_int, vent_eff, vir_lif);
     hold on
     p1 = subplot(1,3,1);
     plot(time/60,particlekonz(time),"-");
