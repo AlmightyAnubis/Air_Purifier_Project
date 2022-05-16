@@ -160,6 +160,18 @@
 \begin{document}
 \pagenumbering{Roman}
 \maketitle
+
+\begin{acronym}[Bash]
+ \acro{LR}{Luftreiniger}
+ \acro{AG}{Aerosol Generator}
+ \acro{Bash}{Bourne-again shell}
+ \acro{JDK}{Java Development Kit}
+ \acro{VM}{Virtuelle Maschine}
+ \acro{I2C}[I²C]{Inter-Integrated Circuit}
+\end{acronym}
+
+
+
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
@@ -176,7 +188,7 @@ Um nicht in jedem Raum die Partikel-Konzentration messen zu müssen, ist es sinn
 Für die Simulation der Viruslast gibt es mehrere relevante Einflussfaktoren. Diese lassen sich prinzipiell in 4 Gruppen einteilen:
 \begin{itemize}
 \item Partikel-Bildung
-\item Partikel-Abbau durch den Luftreiniger
+\item Partikel-Abbau durch den \ac{LR}
 \item Partikel-Abbau durch das Fensterlüftung
 \item Neutralisierung der Partikel durch das Absterben der Viren
 \end{itemize}
@@ -204,18 +216,18 @@ $\dot{P}\tief{inhaliert}$ & Durch Einatmen aufgenommene Partikelanzahl (Partikel
 \end{tabular}
 
 
-\subsection{Abbau der Partikel durch den Luftreiniger}
-Ein Luftreiniger saugt mithilfe eines Motors einen gewissen Luftstrom an und reinigt diesen zu einem gewissen Grad. Es lässt sich also formulieren:
+\subsection{Abbau der Partikel durch den \acl{LR}}
+Ein \ac{LR} saugt mithilfe eines Motors einen gewissen Luftstrom an und reinigt diesen zu einem gewissen Grad. Es lässt sich also formulieren:
 \begin{align}
 \dot{P}\tief{ap} &=\dot{V}\tief{ap} \eta\tief{ap} c\tief{room}\\
 \dot{c}\tief{ap} &=-\frac{\dot{P}\tief{ap}}{V\tief{room}}
 \end{align}
 \begin{tabular}{ll}
-$\dot{P}\tief{ap}$ & Durch Luftreiniger entfernte Partikelanzahl (Partikel$/s$)\\
+$\dot{P}\tief{ap}$ & Durch \ac{LR} entfernte Partikelanzahl (Partikel$/s$)\\
 $c\tief{room}$ & Konzentration der Partikel im Raum (Partikel$/m^3$)\\
-$\dot{V}\tief{ap}$ & Durchschnittlicher Volumenstrom des Luftreinigers ($m^3/s$)\\
-$\eta\tief{ap}$ & Partikel-Wirkungsgrad des Luftreinigers ($\%$)\\
-$\dot{c}\tief{ap}$ & Durch Luftreiniger erzeugte Änderung der  Raumkonzentration (Partikel$/(m^3\cdot s)$)\\
+$\dot{V}\tief{ap}$ & Durchschnittlicher Volumenstrom des \acp{LR} ($m^3/s$)\\
+$\eta\tief{ap}$ & Partikel-Wirkungsgrad des \acp{LR} ($\%$)\\
+$\dot{c}\tief{ap}$ & Durch \ac{LR} erzeugte Änderung der  Raumkonzentration (Partikel$/(m^3\cdot s)$)\\
 \end{tabular}
 
 \subsection{Abbau der Partikel durch Lüften}
@@ -227,7 +239,7 @@ P\tief{room,t+1} = P\tief{room,t} \cdot \left( 1 -  \frac{\eta\tief{vent}}{t\tie
 $P\tief{room,t} $ & Partikelanzahl im Raum (Partikel)\\
 $\eta\tief{vent}$ & Lüftungseffizienz (Raumvolumen/Luftaustauschstrom in Lüftungszeitraum, $s$)\\
 $t\tief{vent} $ & Lüftungsdauer ($s$)\\
-\end{tabular}
+\end{tabular}\\
 Das Lüften findet immer in Intervallen $t\tief{ventintervall} $ statt und wird zu den anderen Zeiten übersprungen.
 
 \subsection{Neutralisation der Viruspartikel durch Absterben}
@@ -243,47 +255,12 @@ Die Berechnung der Konzentration der mit Virus beladenen Partikel in der Raumluf
 \end{center}
 \end{figure}
 
-Um eine potentielle Funktion zu bestimmen, ist es interessant, sich Grenzwerte anzuschauen. Dabei sind interessant:
+Für die Modellfunktion ist es sinnvoll, sich eine Stoffbilanz für den Raum zu betrachte. Diese lässt sich formulieren als:
 \begin{align}
-\label{Equ.: c_max}
-\lim \limits_{t \to \infty} c(t) & = c\tief{max}\\
-\label{Equ.: c_inf_abl}
-\lim \limits_{t \to \infty} \dot{c}(t) & = 0\\
-\lim \limits_{t \to 0} c(t) & = 0\\
-\label{Equ.: m_0}
-\lim \limits_{t \to 0} \dot{c}(t) & = m\tief{0}
-\end{align}
-
-\begin{tabular}{ll}
-$c\tief{max} $ & Maximale Konzentration, Grenzwert\\
-$m\tief{0}$ & Anfangsanstieg\\
-\end{tabular}
-
-Für die Bestimmung von $m\tief{0}$ lässt sich eine einfache Betrachtung anstellen. Da zu Beginn die Partikel noch nicht absterben, entspringt die Konzentrationsänderung hier nur der durch die Atemluft erzeugten Partikel ($\dot{c}\tief{add}$).\\
-
-Eine Funktion, die die Limes Bedingungen erfüllt, ist eine Exponentialfunktion.
-\begin{align}
-c\tief{t} = a\cdot(1 - e^{-bt})
-\end{align}
-Nun können wir mit Hilfe der Limes-Bedingungen einzelne Parameter bestimmen. Aus \autoref{Equ.: m_0} folgt:
-\begin{align}
-\lim \limits_{t \to 0} ab\cdot e^{bt} &= ab = \dot{c}\tief{add}\\
-a &= \frac{\dot{c}\tief{add}}{b}\\
-c\tief{t} &= \frac{\dot{c}\tief{add}}{b}\cdot(1 - e^{-bt})
-\end{align}
-Mit \autoref{Equ.: c_max} lässt sich schlussfolgern:
-\begin{align}
-\lim \limits_{t \to \infty} \frac{\dot{c}\tief{add}}{b}\cdot(1 - e^{-bt})  & = c\tief{max}\\
-\frac{\dot{c}\tief{add}}{b}  & = c\tief{max}
-\end{align}
-Der Parameter $b$ stellt also eine Art Gegenwirkung zur Partikel Bildung dar. Er setzt sich zusammen aus dem Abbau der Partikel durch die Fensterlüftung und den Luftfilter.
-\begin{align}
-b = \frac{ \eta\tief{vent} }{t\tief{ventintervall}} +\frac{\dot{V}\tief{ap}  \eta\tief{ap}}{V\tief{room}}
-\end{align}
-Das sterben der Viren lässt sich nicht einfach integrieren. Prinzipiell könnte man die Virusanzahl mit Hilfe einer exponentiellen Zerfallsfunktion bestimmen, hier wurde jedoch von einer festen Lebensdauer für alle Viren ausgegangen. Unter dieser Annahme, stabilisiert sich die Virusanzahl am Ende der Viruslebensdauer, da stets so viele Viren eingetragen werden, wie durch sterben und Luftaustausch bzw. Reinigung entzogen werden. Damit lässt sich die Viruskonzentration beschreiben mit:
-\begin{align}
-\label{Equ.: conc}
-c\tief{t} &= \frac{a}{b}\cdot(1 - e^{-b\cdot min(t,t\tief{vir})})
+\mathsf{Konzentrations"anderung} &=   \mathsf{Partikelgeneration} -  \ac{LR} - \mathsf{Fensterl"uftung}\\
+\frac{dc}{dt} &= \frac{c\tief{breath}\dot{V}\tief{breath}}{V\tief{Room}} - c V\tief{vent} \eta\tief{vent} - c \frac{\eta\tief{vent}}{t\tief{ventintervall}}\\
+\frac{dc}{dt} &= \frac{c\tief{breath}\dot{V}\tief{breath}}{V\tief{Room}}  - c (V\tief{vent} \eta\tief{vent} +\frac{\eta\tief{vent}}{t\tief{ventintervall}})&\\
+\frac{dc}{dt} &= a - b c
 \end{align}
 mit
 \begin{align}
@@ -291,6 +268,65 @@ a = c\tief{breath} \frac{\dot{V}\tief{breath}}{V\tief{room}}\\
 \label{Equ.: konst b}
 b = \frac{ \eta\tief{vent} }{t\tief{ventintervall}} +\frac{\dot{V}\tief{ap}  \eta\tief{ap}}{V\tief{room}}
 \end{align}
+Diese Funktion lässt sich nun umstellen.
+\begin{align}
+\frac{dc}{a - b c} &= dt\\
+\int \frac{1}{a - b c} dc &=\int 1 dt\\
+\frac{ln(a - b c}{-b} &=t + konst.\\
+a- b c = konst. \cdot e^{-bt}\\
+c(t) = \frac{a - konst. \cdot e^{-bt}}{b}
+\end{align}
+
+
+
+Um die Konstante zu bestimmen, ist es interessant, sich Grenzwerte anzuschauen.\\
+
+\subsection{Einstellen eines Gleichgewichts}
+Für einen Raum, der vorher nicht genutzt wurde gilt näherungsweise:
+\begin{align}
+\lim \limits_{t \to 0} c(t) & = 0\\
+ \frac{a - konst. \cdot e^{-b0}}{b} &= 0\\
+a - konst. &= 0\\
+konst. &= a
+\end{align}
+
+Damit ergibt sich:
+\begin{align}
+c(t) = \frac{a}{b}(1 - konst. \cdot e^{-bt})
+\end{align}
+
+\subsection{Abbau der Partikel}
+Für den Abbau der Partikel im Raum ohne die Bildung neuer Partikel gilt:
+\begin{align}
+a = 0\\
+\lim \limits_{t \to 0} c(t) & = c\tief{0}\\
+\frac{0 - konst. \cdot e^{-b0}}{b} &= c\tief{0}\\
+konst. &= - c\tief{0} b\\
+\end{align}
+
+Damit ergibt sich:
+\begin{align}
+c(t) =  c\tief{0} \cdot e^{-bt}
+\end{align}
+
+\subsection{Absterben der Viren}
+Das sterben der Viren lässt sich nicht einfach integrieren. Prinzipiell könnte man die Virusanzahl mit Hilfe einer exponentiellen Zerfallsfunktion bestimmen, hier wurde jedoch von einer festen Lebensdauer für alle Viren ausgegangen. Unter dieser Annahme, stabilisiert sich die Virusanzahl am Ende der Viruslebensdauer, da stets so viele Viren eingetragen werden, wie durch sterben und Luftaustausch bzw. Reinigung entzogen werden. Damit lässt sich die Viruskonzentration beschreiben mit:
+
+\begin{align}
+\label{Equ.: conc}
+c(t) &= \frac{a}{b}\cdot(1 - e^{-b\cdot min(t,t\tief{vir})})
+\end{align}
+bzw.
+
+
+\begin{align}
+c(t) =
+\begin{cases} 
+c\tief{0} \cdot e^{-bt} & t < t\tief{vir} \\
+0 & t \geq t\tief{vir} \\
+\end{cases}
+\end{align}
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =0.8 \textwidth]{Simulation_fit1.pdf}
@@ -321,7 +357,7 @@ Daraus lässt sich ableiten:
 \item Steigt a, so steigt die Streckung in y-Richtung, was bedeutet, das die Viruskonzentration schneller anwächst und das Maximum höher liegt. Da a ein Maß für die ausgestoßene Menge an Partikeln bezogen auf die Raumgröße ist, ist dieses Verhalten auch durchaus plausibel.
 \item Für b gilt das gleiche, jedoch befindet sich b auch im exponentiellen Teil der Gleichung. Durch eine Steigerung von b in diesem Bereich, erreicht der exponentiellen Teil schneller dem Wert von 1 und somit die Gesamtfunktion schneller die maximale Konzentration. Dieser Effekt ist dadurch zu erklären, dass sich durch die geringere maximale Konzentration schneller das Gleichgewicht zwischen Partikel-Bildung und Partikel-Abbau einstellen kann.
 \end{itemize}
-Zudem zeigt die Gleichung, dass Partikel-Abbau durch den Luftreiniger und Partikel-Abbau durch das Lüften sich sehr ähnlich verhalten. Diese Eigenschaft wird häufig in der Luftwechselrate $n$ zusammengefasst.
+Zudem zeigt die Gleichung, dass Partikel-Abbau durch den \acp{LR} und Partikel-Abbau durch das Lüften sich sehr ähnlich verhalten. Diese Eigenschaft wird häufig in der Luftwechselrate $n$ zusammengefasst.
 \begin{align}
 n &=  \frac{\dot{V}}{V\tief{room}}
 \end{align}
@@ -354,14 +390,14 @@ $\eta\tief{vent}$ & $0.5$ \\
 $\eta\tief{ap}$ & $0.0$    \\
 \end{tabular}
 
-Da in den meisten Fällen entweder ein Luftreiniger läuft oder das Fenster geöffnet wird, wird in den folgenden Analysen jeweils die Effizienz der anderen Methode auf 0 gesetzt, so dass ihr Einfluss entfällt.\\
+Da in den meisten Fällen entweder ein \ac{LR} läuft oder das Fenster geöffnet wird, wird in den folgenden Analysen jeweils die Effizienz der anderen Methode auf 0 gesetzt, so dass ihr Einfluss entfällt.\\
 Da die meisten Schulen keine Luftfilter besitzen, wir 20 minütiges Lüften als Standard angenommen.\\
 Die einzelnen Einflussfaktoren wurden immer mit $\frac{1}{4}$,$\frac{1}{2}$,$1$,$2$ und $4$ multipliziert, um vergleichbare Ergebnisse zu erhalten. Für die Werte der Effizienz würden jeweils sinnvolle Bereiche verwendet, da eine Effizienz über 1 nicht sinnvoll wäre.\\
 
 
 
 \newpage
-\subsection{Einfluss des Luftreinigers}
+\subsection{Einfluss des \aclp{LR}}
 
 
 
@@ -369,7 +405,7 @@ Die einzelnen Einflussfaktoren wurden immer mit $\frac{1}{4}$,$\frac{1}{2}$,$1$,
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =1 \textwidth]{V_{ap}.eps}
-\caption{Einfluss des Luftreiniger Volumenstroms (Faktor $b$)}
+\caption{Einfluss des \ac{LR} Volumenstroms (Faktor $b$)}
 \label{Abb: lueftung}
 \end{center}
 \end{figure}
@@ -378,12 +414,12 @@ Die einzelnen Einflussfaktoren wurden immer mit $\frac{1}{4}$,$\frac{1}{2}$,$1$,
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =1 \textwidth]{eta_{ap}.eps}
-\caption{Einfluss der Luftreiniger Filtereffizienz (Faktor $b$)}
+\caption{Einfluss der \ac{LR} Filtereffizienz (Faktor $b$)}
 \label{Abb: lueftung}
 \end{center}
 \end{figure}
 
-Bereits ein geringer Volumenstrom einer Luftreinigers bringt eine deutliche Verbesserung der Raumluft. Die Filtereffizienz hingegen hat nur einen sehr geringen Einfluss. Da mit steigender Filtereffizienz auch der Luftwiderstand und so der Energieverbrauch steigt, sollte eher ein Lüfter mit ineffizientem Filter gewählt werden.
+Bereits ein geringer Volumenstrom einer \acp{LR} bringt eine deutliche Verbesserung der Raumluft. Die Filtereffizienz hingegen hat nur einen sehr geringen Einfluss. Da mit steigender Filtereffizienz auch der Luftwiderstand und so der Energieverbrauch steigt, sollte eher ein Lüfter mit ineffizientem Filter gewählt werden.
 
 \newpage
 \subsection{Einfluss der Fensterlüftung}
@@ -465,22 +501,22 @@ Im Rahmen eines Experiments, wurden die folgenden Kurven durchlaufen. Dadurch so
 \begin{figure}[H]
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width =\textwidth]{timesplit001_AG.eps}
-\caption{Entwicklung der Partikel-Konzentration über der Zeit, nur AG läuft}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, nur \acs{AG} läuft}
 \label{Abb: timesplit001_AG}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width = \textwidth]{timesplit002_LR.eps}
-\caption{Entwicklung der Partikel-Konzentration über der Zeit, Nur LR läuft}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Nur \ac{LR} läuft}
 \label{Abb: timesplit002_LR}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width = \textwidth]{timesplit003_LR_AG.eps}
-\caption{Entwicklung der Partikel-Konzentration über der Zeit, LR und AG laufen}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, LR und \acs{AG} laufen}
 \label{Abb: timesplit003_LR_AG}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width = \textwidth]{timesplit004_AG.eps}
-\caption{Entwicklung der Partikel-Konzentration über der Zeit, nur AG läuft}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, nur \acs{AG} läuft}
 \label{Abb: timesplit004_AG}
 \end{minipage}
 \end{figure}
@@ -493,12 +529,12 @@ Im Rahmen eines Experiments, wurden die folgenden Kurven durchlaufen. Dadurch so
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width = \textwidth]{timesplit006_Fenster_Tuer_AG.eps}
-\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet, AG läuft}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet, \acs{AG} läuft}
 \label{Abb: timesplit006_Fenster_Tuer_AG}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width = \textwidth]{timesplit007_Fenster_Tuer_LR_AG.eps}
-\caption{Entwicklung der Partikel-Konzentration über der Zeit,  Fenster und Tür geöffnet, LR und AG laufen}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit,  Fenster und Tür geöffnet, \ac{LR} und \acs{AG} laufen}
 \label{Abb: timesplit007_Fenster_Tuer_LR_AG}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
@@ -516,30 +552,27 @@ Im Rahmen eines Experiments, wurden die folgenden Kurven durchlaufen. Dadurch so
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width = \textwidth]{timesplit010_Fenster_Tuer_LR.eps}
-\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet, LR läuft}
+\caption{Entwicklung der Partikel-Konzentration über der Zeit, Fenster und Tür geöffnet, \ac{LR} läuft}
 \label{Abb: timesplit010_Fenster_Tuer_LR}
 \end{minipage}
 \end{figure}
 
-Um die Funktion anwenden zu können, müssen 3 Kriterien erfüllt sein:
-\begin{enumerate}
-\item Es müssen sich Partikel bilden.
-\item Es müssen Partikel aus dem Raum entfernt werden.
-\item Die Bildung muss zu Beginn größer sein als der Abbau. Idealerweise sollte die Anfangskonzentration 0 sein, das kann aber mit einem Offset des Exponenten gelöst werden
-\end{enumerate}
-Diese Bedingungen sind für \autoref{Abb: timesplit003_LR_AG} und \ref{Abb: timesplit006_Fenster_Tuer_AG} erfüllt.
-Aus den anderen Funktionen lassen sich jedoch andere Parameter ablesen. Aus \autoref{Abb: timesplit001_AG} kann die Partikelbildung durch Aerosol Generator (AG) berechnet werden. Es ist aber zu beachten, das die Werte umd fast 25\% voneinander abweichen. Dafür muss der Anstieg der Partikeldichte mit dem Raumvolumen multipliziert werden:
+
+Aus \autoref{Abb: timesplit001_AG} kann die Partikelbildung durch \acf{AG} berechnet werden. Es ist aber zu beachten, das die Werte um fast 25\% voneinander abweichen. Dafür muss der Anstieg der Partikeldichte mit dem Raumvolumen multipliziert werden:
 \begin{equation}
 \dot{n} = c\tief{t} \cdot V\tief{room} 
 \end{equation}
 Damit erhält man eine Partikelbildung von 930 bzw. 1162 Partikeln pro Sekunde je nach Messkurve. Geht man von einem Standard Atemvolumen von $V\tief{breath} = \SI{5}{\liter\per\minute}$  aus, so entspricht das einer Konzentration von 11 160 bis 13 950 Partikeln pro Liter Atemluft. 
-Damit lassen sich nun die Daten aus \autoref{Abb: timesplit003_LR_AG} validieren. Nach dem Modell müsste der Parameter b sich ergeben zu:
+
+Aus \autoref{Abb: timesplit002_LR}, \ref{Abb: timesplit003_LR_AG} und \ref{Abb: timesplit008_LR} kann der Parameter b bezüglich des \acp{LR} validiert werden. Nach dem Modell müsste der Parameter b sich ergeben zu:
 \begin{align}
 b &= \frac{1000/\SI{3600}{\cubic\meter\per\second}   \cdot  0.995}{\SI{186}{\cubic\meter}}\\
 &= \SI{0.001486}{\per\second} \\
 &= \SI{0.089158}{\per\minute}
 \end{align}
-Dieser Wert liegt ca. 25\% unterhalb des Mittelwerts der Parameter der durch die Fits gebildeten Funktion. Das kann verschiedene Gründe haben. Zum einen sind die Schwankungen der Messdaten relativ hoch, so das es hier zu Fehlern gekommen sein könnte. Allein zwischen den Parametern der einzelnen Funktionen gibt es eine Abweichung von fast 40\%. Zum anderen könnte die Annahme der idealen Durchmischung, also des 1-D-Modells, nicht ganz die Wirklichkeit widerspiegeln. Gerade bei einer so hohen Konzentration durch den Aerosolgenerator können sich räumlich Gradienten ausbilden, die die Messdaten verfälschen.
+Dieser liegt für den reinen Abbau der Partikel in  \autoref{Abb: timesplit002_LR} etwas über dem erwarteten Wert. Für  \autoref{Abb: timesplit008_LR} gibt es eine relative gute Übereinstimmung. In \autoref{Abb: timesplit003_LR_AG} etwas darüber. \\
+Das kann verschiedene Gründe haben. Zum einen sind die Schwankungen der Messdaten relativ hoch, so das es hier zu Fehlern gekommen sein könnte. Allein zwischen den Parametern der einzelnen Funktionen in \autoref{Abb: timesplit003_LR_AG} gibt es eine Abweichung von fast 40\%. Zum anderen könnte die Annahme der idealen Durchmischung, also des 0-D-Modells, nicht ganz die Wirklichkeit widerspiegeln. Gerade bei einer so hohen Konzentration durch den \ac{AG} können sich räumlich Gradienten sowie Partikelwolken ausbilden, die die Messdaten verfälschen.\\
+Aus der Partikelbildungsrate lässt sich auch nun noch der Faktor a berechnen:
 \begin{align}
 a1 &= \frac{\SI{11160}{particle\per\liter}   \cdot   5/\SI{60}{\liter\per\second}}{\SI{186}{\cubic\meter}}\\
 &= \SI{5}{particle\per\second\per\cubic\meter} \\
@@ -552,8 +585,8 @@ Damit lässt dich nun das Verhältnis von $a$ zu $b$ bestimmen:
 \frac{a2}{b} &=   \SI{4206}{particle\per\cubic\meter}  \\
 \frac{a1 + a2}{2 b} &=   \SI{3785}{particle\per\cubic\meter} 
 \end{align}
-
-
+Auch hier kommt es zu einer Abweichung von 20\% vom Mittelwert.\\
+Mit Hilfe von \autoref{Abb: timesplit005_Fenster_Tuer} kann auch der Lüftungsfaktor bestimmt werden. Da das Lüften nicht in Intervallen stattfand, kann die Lüftungseffizienz nicht aus dem Modell bestimmt werden. Jedoch ist die Lüftungseffizienz definiert also das Verhältnis 
 
 
 
