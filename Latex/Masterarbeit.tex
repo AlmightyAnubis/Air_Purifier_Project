@@ -119,7 +119,7 @@
 
 
 
-
+\newenvironment{parameterNames}{Neue Formelzeichen:\\ \begin{tabular}{ll}}{\end{tabular} \\ \\}
 
 %-------------------------------------------------------------------------
 
@@ -206,14 +206,14 @@ Für die nicht infizierten Personen ändert sich durch die Erhöhung ihres Atemv
 \begin{align}
 \dot{P}\tief{inhaliert} = c\tief{ges}\dot{V}\tief{breath}
 \end{align}
-\begin{tabular}{ll}
+\begin{parameterNames}
 $\dot{P}\tief{add}$ & Durch Ausatmen eingetragener Partikelanzahlstrom (Partikel$/s$)\\
 $c\tief{breath}$ & Konzentration der Partikel in der Ausatemluft (Partikel$/m^3$)\\
 $\dot{V}\tief{breath}$ & Durchschnittlicher Atemvolumenstrom ($m^3/s$)\\
 $\dot{c}\tief{add}$ & Durch Ausatmen erzeugte Änderung der  Raumkonzentration (Partikel$/(m^3\cdot s)$)\\
 $V\tief{room}$ & Raumvolumen ($m^3$)\\
 $\dot{P}\tief{inhaliert}$ & Durch Einatmen aufgenommene Partikelanzahl (Partikel$/s$)\\
-\end{tabular}
+\end{parameterNames}
 
 
 \subsection{Abbau der Partikel durch den \acl{LR}}
@@ -222,25 +222,45 @@ Ein \ac{LR} saugt mithilfe eines Motors einen gewissen Luftstrom an und reinigt 
 \dot{P}\tief{ap} &=\dot{V}\tief{ap} \eta\tief{ap} c\tief{room}\\
 \dot{c}\tief{ap} &=-\frac{\dot{P}\tief{ap}}{V\tief{room}}
 \end{align}
-\begin{tabular}{ll}
+\begin{parameterNames}
 $\dot{P}\tief{ap}$ & Durch \ac{LR} entfernte Partikelanzahl (Partikel$/s$)\\
 $c\tief{room}$ & Konzentration der Partikel im Raum (Partikel$/m^3$)\\
 $\dot{V}\tief{ap}$ & Durchschnittlicher Volumenstrom des \acp{LR} ($m^3/s$)\\
 $\eta\tief{ap}$ & Partikel-Wirkungsgrad des \acp{LR} ($\%$)\\
 $\dot{c}\tief{ap}$ & Durch \ac{LR} erzeugte Änderung der  Raumkonzentration (Partikel$/(m^3\cdot s)$)\\
-\end{tabular}
+\end{parameterNames}
 
 \subsection{Abbau der Partikel durch Lüften}
-Durch Lüften verdünnt sich quasi die Raumluft. Damit lässt sich die Partikel-Anzahl beschreiben mit:
+Das Lüften findet immer in Intervallen $t\tief{ventintervall} $ für eine Dauer von  $t\tief{ventduration}$ statt und wird zu den anderen Zeiten übersprungen. Dabei liegt die Lüftungsdauer im Lüftungsintervall, das heißt die Fenster sind für $t\tief{ventintervall} - t\tief{ventduration}$ geschlossen. Durch Lüften verdünnt sich quasi die Raumluft. Das bisherige Modell bezog den Luftaustausch auf die Lüftungsdauer. Damit wurde  die Partikel-Anzahl beschreiben durch:
 \begin{align}
 P\tief{room,t+1} = P\tief{room,t} \cdot \left( 1 -  \frac{\eta\tief{vent}}{t\tief{vent}}\right)
 \end{align}
-\begin{tabular}{ll}
+\begin{parameterNames}
 $P\tief{room,t} $ & Partikelanzahl im Raum (Partikel)\\
 $\eta\tief{vent}$ & Lüftungseffizienz (Raumvolumen/Luftaustauschstrom in Lüftungszeitraum, $s$)\\
-$t\tief{vent} $ & Lüftungsdauer ($s$)\\
-\end{tabular}\\
-Das Lüften findet immer in Intervallen $t\tief{ventintervall} $ statt und wird zu den anderen Zeiten übersprungen.
+$t\tief{ventduration} $ & Lüftungsdauer ($s$)\\
+\end{parameterNames}
+Das Problem damit ist, das sich bei Verlängerung der Lüftungsdauer die ausgetauschte Luftmenge die gleiche blieb. Das entspricht jedoch nicht der Wirklichkeit. Daher ist es sinnvoller, eine Luftwechselrate zu definieren, die auf eine Stunde bezogen ist. Für Zeitschritte, die eine Sekunde lang sind ergibt sich so:
+\begin{align}
+P\tief{room,t+1} = P\tief{room,t} \cdot \left( 1 -  \frac{n\tief{vent}}{\SI{60}{\minute\per\hour}\cdot \SI{60}{\second\per\minute}}\right)
+\end{align}
+\begin{parameterNames}
+$n\tief{vent}$ & Luftwechselrate durch Lüften (Raumvolumen/Luftaustauschstrom bezogen auf eine Stunde, $\SI{}{\per\hour}$)\\
+\end{parameterNames}
+Für die Umrechnung kann man beide Werte einfach gleichsetzen:
+\begin{align}
+\frac{n\tief{vent}}{\SI{60}{\minute\per\hour}\cdot \SI{60}{\second\per\minute}} &= \frac{\eta\tief{vent}}{t\tief{vent}}\\
+n\tief{vent} &= \frac{\eta\tief{vent}}{t\tief{vent}}\cdot \SI{60}{\minute\per\hour}\cdot \SI{60}{\second\per\minute}
+\end{align}
+Für den bisherigen Standardwert von $\eta\tief{vent} = 0.5$ und $t\tief{vent} = \SI{5}{\minute}$  ergibt sich:
+\begin{align}
+n\tief{vent} &= \frac{0.5}{\SI{5}{\minute}}\cdot \SI{60}{\minute\per\hour}
+n\tief{vent} &= 6
+\end{align}
+Das heißt, das bei dauerhaft geöffnetem Fenster eine Luftwechselrate von 6 erreicht werden würde.
+
+
+
 
 \subsection{Neutralisation der Viruspartikel durch Absterben}
 Um den Effekt des Absterbens zu simulieren, werden die Viruspartikel in einzelne Fraktionen mit dem entsprechenden Zeitpunkt gespeichert. Da sich die Fraktionen nur minimal gegenseitig beeinflussen, kann jede der vorherigen Operationen auch auf jede Gruppe einzeln angewendet werden. Ist eine Fraktion älter als die Viruslebensdauer $t\tief{vir}$, so wird ihre Anzahl auf 0 gesetzt. Auch ein Modell, das ein Absterben mit Hilfe einer Normalverteilung um den Todeszeitpunkt nutzt, wurde untersucht, führte jedoch zu keiner signifikanten Änderung der Ergebnisse. 
@@ -258,15 +278,15 @@ Die Berechnung der Konzentration der mit Virus beladenen Partikel in der Raumluf
 Für die Modellfunktion ist es sinnvoll, sich eine Stoffbilanz für den Raum zu betrachte. Diese lässt sich formulieren als:
 \begin{align}
 \mathsf{Konzentrations"anderung} &=   \mathsf{Partikelgeneration} -  \ac{LR} - \mathsf{Fensterl"uftung}\\
-\frac{dc}{dt} &= \frac{c\tief{breath}\dot{V}\tief{breath}}{V\tief{Room}} - c V\tief{vent} \eta\tief{vent} - c \frac{\eta\tief{vent}}{t\tief{ventintervall}}\\
-\frac{dc}{dt} &= \frac{c\tief{breath}\dot{V}\tief{breath}}{V\tief{Room}}  - c (V\tief{vent} \eta\tief{vent} +\frac{\eta\tief{vent}}{t\tief{ventintervall}})&\\
+\frac{dc}{dt} &= \frac{c\tief{breath}\dot{V}\tief{breath}}{V\tief{Room}} - c V\tief{ap} \eta\tief{ap} - c n\tief{vent} \frac{t\tief{ventduration}}{t\tief{ventintervall}}\\
+\frac{dc}{dt} &= \frac{c\tief{breath}\dot{V}\tief{breath}}{V\tief{Room}}  - c \left(V\tief{ap} \eta\tief{ap} +n\tief{vent} \frac{t\tief{ventduration}}{t\tief{ventintervall}} \right) &\\
 \frac{dc}{dt} &= a - b c
 \end{align}
 mit
 \begin{align}
-a = c\tief{breath} \frac{\dot{V}\tief{breath}}{V\tief{room}}\\
+a &= c\tief{breath} \frac{\dot{V}\tief{breath}}{V\tief{room}}\\
 \label{Equ.: konst b}
-b = \frac{ \eta\tief{vent} }{t\tief{ventintervall}} +\frac{\dot{V}\tief{ap}  \eta\tief{ap}}{V\tief{room}}
+b &= n\tief{vent} \frac{t\tief{ventduration}}{t\tief{ventintervall}} +\frac{\dot{V}\tief{ap}  \eta\tief{ap}}{V\tief{room}}
 \end{align}
 Diese Funktion lässt sich nun umstellen.
 \begin{align}
@@ -363,10 +383,15 @@ n &=  \frac{\dot{V}}{V\tief{room}}
 \end{align}
 Mit \autoref{Equ.: konst b} lassen sich die beiden Lüftungseffekte als Luftwechselraten darstellen:
 \begin{align}
-n\tief{purifier} &= \frac{\dot{V}\tief{ap} \eta\tief{ap}}{V\tief{room}}\\
-n\tief{vent} &= \frac{ \eta\tief{vent} }{t\tief{ventintervall}}\\
-b = n\tief{purifier} + n\tief{vent}
+n\tief{ap} &= \frac{\dot{V}\tief{ap} \eta\tief{ap}}{V\tief{room}}\\
+n\tief{vent,eff} &= n\tief{vent} \frac{t\tief{ventduration}}{t\tief{ventintervall}} \\
+b = n\tief{ap} + n\tief{vent,eff}
 \end{align}
+\begin{tabular}{ll}
+$n\tief{ap}$ & Luftwechselrate des Luftreinigers \\
+$n\tief{vent,eff}$ &Effektive Luftwechselrate durch das Lüften\\
+\end{tabular}
+\\ \\
 In den folgenden Szenarien wird jeweils eine Größe variiert, während die anderen auf einem Standard-Wert verweilen. Die Standardwerte sind die folgenden:\\
 \begin{tabular}{ll}
 $t\tief{ges}$ & $\SI{5}{\hour}$   \\
@@ -375,18 +400,19 @@ $V\tief{breath}$ & $\SI{5}{\liter\per\minute}$   \\
 $V\tief{room}$ & $\SI{200}{\cubic\meter}$   \\
 $t\tief{vir}$ & $\SI{90}{\minute}$\\
 $V\tief{ap}$ & $\SI{500}{\cubic\meter\per\hour}$   \\
+$t\tief{ventduration}$ & $\SI{5}{\minute}$    \\
 $t\tief{ventintervall}$ & $\SI{20}{\minute}$    \\
 \end{tabular}
 \\ \\
 Für Analysen zum Luftreiniger:\\
 \begin{tabular}{ll}
-$\eta\tief{vent}$ & $0.0$ \\
+$n\tief{vent}$ & $0$ \\
 $\eta\tief{ap}$ & $0.95$    \\
 \end{tabular}
 \\ \\
 Sonst:\\
 \begin{tabular}{ll}
-$\eta\tief{vent}$ & $0.5$ \\
+$n\tief{vent}$ & $6$ \\
 $\eta\tief{ap}$ & $0.0$    \\
 \end{tabular}
 
@@ -433,16 +459,25 @@ Bereits ein geringer Volumenstrom einer \acp{LR} bringt eine deutliche Verbesser
 \end{center}
 \end{figure}
 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =1 \textwidth]{t_{ventduration}.eps}
+\caption{Einfluss der Fensterlüftungsintervalle (Faktor $b$)}
+\label{Abb: lueftung}
+\end{center}
+\end{figure}
+
+Fensterlüftung kann aus Partikel-technischer Sicht durchaus mit Raumluftfiltern mithalten. Dafür muss die Raumluft jedoch ausreichend austauscht werden. Das heißt, das Durchzug oder ähnliche Bedingungen hergestellt werden müssen, damit die Luft auch im ausreichenden Maße ausgetauscht wird. Zudem ist eine regelmäßige Lüftung notwendig.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width =1 \textwidth]{eta_{vent}.eps}
+\includegraphics[width =1 \textwidth]{n_{vent}.eps}
 \caption{Einfluss der Fensterlüftungseffizienz (Faktor $b$)}
 \label{Abb: lueftung}
 \end{center}
 \end{figure}
 
-Fensterlüftung kann aus Partikel-technischer Sicht durchaus mit Raumluftfiltern mithalten. Dafür muss die Raumluft jedoch ausreichend austauscht werden. Das heißt, das Durchzug oder ähnliche Bedingungen hergestellt werden müssen, damit die Luft auch im ausreichenden Maße ausgetauscht wird.
+
 
 \newpage
 \subsection{Einfluss der Aktivität}
@@ -586,8 +621,12 @@ Damit lässt dich nun das Verhältnis von $a$ zu $b$ bestimmen:
 \frac{a1 + a2}{2 b} &=   \SI{3785}{particle\per\cubic\meter} 
 \end{align}
 Auch hier kommt es zu einer Abweichung von 20\% vom Mittelwert.\\
-Mit Hilfe von \autoref{Abb: timesplit005_Fenster_Tuer} kann auch der Lüftungsfaktor bestimmt werden. Da das Lüften nicht in Intervallen stattfand, kann die Lüftungseffizienz nicht aus dem Modell bestimmt werden. Jedoch ist die Lüftungseffizienz definiert also das Verhältnis 
-
+Mit Hilfe von \autoref{Abb: timesplit005_Fenster_Tuer} kann auch der Lüftungsfaktor bestimmt werden. Da das Lüften kontinuierlich stattfand,wird das Verhältnis von $t\tief{ventduration}$ zu $t\tief{ventintervall}$ eins. Für die Umrechnung des Exponenten muss der Bezug auf eine Stunde angepasst werden:
+\begin{align}
+n\tief{vent} = \frac{\SI{0.155}{\per\minute} + \SI{0.165}{\per\minute}}{2} \cdot \SI{60}{\minute\per\hour}
+n\tief{vent} = \SI{9.6}{\per\hour}
+\end{align}
+Es ist jedoch zu beachten, das meist nicht richtig quer gelüftet wird, sondern die Tür(-en) geschlossen bleiben.
 
 
 

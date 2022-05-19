@@ -1,30 +1,32 @@
 clear
-%close all
+close all
 clc
 %% Params
-runtime = 0.5 * 60 * 60;
+runtime = 5 * 60 * 60;
 V_breath = 5/60/1000;
 c_breath = 0.1 * 1000000;
 V_ap = 1000/3600;
-ap_eff = 0.995;
-V_room = 186;
+ap_eff = 0.0;
+V_room = 200;
 vent_int = 20*60;
-vent_eff = 0.0;
+vent_dur = 5*60; % Lüftungsdauer
+n_vent = 6; %Luftwechselrate pro h
 vir_lif = 90*60;
+
 
 time = linspace(0,runtime,runtime/60+1);
 space = 2.^(-2:2);
 
 
-value = c_breath;
-name = "c_breath";
+value = vent_dur;
+name = "vent_dur";
 
 setup();
 figure();
 T_conc = table(time'/60,'VariableNames',{'time'});
 T_tot = table(time'/60,'VariableNames',{'time'});
 for variable=data
-    [particleSum,particlekonz] = FunctionBased(variable,V_ap,ap_eff,V_room,V_breath, vent_int, vent_eff, vir_lif);
+    functionSelect();
     hold on
     p1 = subplot(1,3,1);
     plot(time/60,particlekonz(time),"-");
@@ -71,11 +73,11 @@ points = fit(data',endvalue,'smoothingspline');
 plot(sample*factor,points(sample),"-");
 legend("standard value");
 xlim([0,max(data*factor)]);
-ytickangle(0)
+xtickangle(0)
 ax = gca;
 ax.YAxis.Exponent = 2;
 ylim([0,600]);
-xticks(data)
+xticks(linspace(0,max(data*factor),5));
 grid on
 hold off
 
@@ -128,7 +130,7 @@ Information = Information + "ap_{eff} = "  + ap_eff + "    ";
 Information = Information + "V_{room} = "  + V_room + " m^3   ";
 Information = Information + "vent_{int} = "  + vent_int/60 + " min    ";
 %Information = Information + "vent_{dur} = "  + vent_dur/60 + " min    ";
-Information = Information + "vent_{eff} = "  + vent_eff*100 + " %    ";
+Information = Information + "n_{vent} = "  + n_vent + "   ";
 Information = Information + "vir_{lif} = "  + vir_lif/60 + " min   ";
 
 %annotation('textbox', [0.05, 0.01, 0.85, 0.2], 'String', Information);

@@ -12,8 +12,10 @@ switch name
         name = "V_{room}";
     case "vent_int"
         name = "t_{ventintervall}";
-    case "vent_eff"
-        name = "\eta_{vent}";
+    case "vent_dur"
+        name = "t_{ventduration}";
+    case "n_vent"
+        name = "n_{vent}";
     case "vir_lif"
         name = "t_{vir}";
 end
@@ -28,14 +30,16 @@ switch name
         factor = 1*3600;
     case "t_{ventintervall}"
         factor = 1/60;
+    case "t_{ventduration}"
+        factor = 1/60;
     case "t_{vir}"
-        factor = 1/60;       
+        factor = 1/60;
     otherwise
         factor = 1;
 end
 
 if(contains(name,"c_{breath}"))
-    space = 2.^(-1:7);
+    space = 2.^(-1:5);
 end
 
 data = value*space;

@@ -4,17 +4,17 @@ clear
 
 
 %% Params
-runtime = 5 * 60 * 60;
+runtime = 3 * 60 * 60;
 V_br = 5/60/1000;
 c_breath = 0.1 * 1000000;
 V_ap = 500/3600;
 ap_eff = 0;%0.95;
 V_room = 200;
 vent_int = 20*60;
-vent_eff = 0.5;%0.1;
+vent_eff = 6;%0.5;%0.1;
 vir_lif = 90*60;
 P_add = V_br * c_breath;
-vent_dur = 2*60;
+vent_dur = 10*60;
 t_vir_dis = 1;
 
 %% Calc
@@ -76,7 +76,7 @@ hLine = time(1:end-vent_int)*0 + gw;
 
 hold on  
 
-ventilation_Factor = (vent_eff/vent_int + V_ap*ap_eff/V_room);
+ventilation_Factor = (vent_eff*vent_dur/vent_int/3600 + V_ap*ap_eff/V_room);
 
 virusConcFunction = @(t) m_0 * (1 - exp(- ventilation_Factor * min(t,vir_lif)))/ventilation_Factor;
 virusConcFunctionDeathLess = @(t) m_0 * 60 * (1 - exp(- ventilation_Factor * t))/ventilation_Factor;

@@ -9,7 +9,7 @@
 %
 %   VD          - Ventilation Durration (s)
 %   VI          - Ventilation Intervall (s)
-%   VE          - Ventilation Efficiency (Air exchange portion for the ventilation period, %, 0 if no ventilation)
+%   AER          - Air exchange rate (Air exchange portion for 1 hour, %, 0 if no ventilation)
 %
 %   t_virus     - Average Virus living duration(mu) (s) (inf for no virus deaths)
 %   t_vir_dis   - Distribution of virus death(sigma) (0 - sharp peak else normal
@@ -20,7 +20,7 @@
 
 
 
-function [Partikel_inhaliert_summe,c_ges] = Iteration(Zeitschritte, PA_add,V_ap,ap_eff,Volume,V_br, VI, VD, VE, t_virus, t_vir_dis)
+function [Partikel_inhaliert_summe,c_ges] = Iteration(Zeitschritte, PA_add,V_ap,ap_eff,Volume,V_br, VI, VD, AER, t_virus, t_vir_dis)
     
     
     
@@ -31,6 +31,7 @@ function [Partikel_inhaliert_summe,c_ges] = Iteration(Zeitschritte, PA_add,V_ap,
     c_ges  = zeros (1,Zeitschritte); % Mittlere Partikel-Konzentration im Raum
     Partikel_inhaliert = zeros (1,Zeitschritte); % Partikel die eine Person im aktuellen Zeitschritt inhaliert
     Partikel_inhaliert_summe = zeros (1,Zeitschritte); % Summe der inhalierten Partikel
+
     PA_VS = PA_add * ones(1,Zeitschritte); % Vieren die Sterben (Die Startanzahl ist mit PA_add bekannt, diese Anzhal reduziert nach ihrem Eintrag von Sekunde zu Sekunde. )
     c_VS = c_add * ones(1,Zeitschritte);  % Verringerung der Vierenkonzentration aufgrund des Virensterbens. (Die Startkonzentration ist mit c_add bekannt, diese Anzhal reduziert nach ihrem Eintrag von Sekunde zu Sekunde.
     
@@ -45,6 +46,7 @@ function [Partikel_inhaliert_summe,c_ges] = Iteration(Zeitschritte, PA_add,V_ap,
     
     % Mittlere Partikelkonzentration im Raum in [Partikel/m3]
     c_ges (1) = c_add;
+    c_ges_neu (1) = c_add;
     
     % Partikel die eine Person im aktuellen Zeitschritt inhaliert
     Partikel_inhaliert (1) = c_ges(1) *  V_br;
@@ -78,7 +80,7 @@ function [Partikel_inhaliert_summe,c_ges] = Iteration(Zeitschritte, PA_add,V_ap,
         if (timeStep * VI <= t && t <(timeStep * VI+VD))
             % Viruspartikel durch Lüften ausgetragen und durch
             % RLF entfernt
-            PA_VS (1:t)= PA_VS(1:t) * (1-VE/VD) ;
+            PA_VS (1:t)= PA_VS(1:t) * (1-AER/3600) ;
         end
         
         %% Effect Virus Death

@@ -41,12 +41,16 @@ ysize = ceil(length(splits)/xsize);
 
 figure();
 
-myfittype = fittype('a*(1-exp(b*(x+c)))',...
+approchingfittype = fittype('a*(1-exp(b*(x+c)))',...
     'dependent',{'y'},'independent',{'x'},...
-    'coefficients',{'a','b','c'})
+    'coefficients',{'a','b','c'});
+expon2 = fittype('a*exp(b*x)+c',...
+    'dependent',{'y'},'independent',{'x'},...
+    'coefficients',{'a','b','c'});
+expon =fittype("exp1");
+expon = expon2;
 pol =fittype("poly1");
-expon = fittype("exp1");
-FittingTypes = {pol expon myfittype pol expon  myfittype expon expon expon expon};
+FittingTypes = {pol expon approchingfittype pol expon  approchingfittype expon expon expon expon};
 
 for i = 1:length(splits)
     subplot(xsize,ysize,i);
@@ -56,60 +60,72 @@ for i = 1:length(splits)
     maxValue1 = max(smoth1);
     maxValue2 = max(smoth2);
     maxValue = max(maxValue1,maxValue2);
-    datapoints(:,1) = datapoints(:,1)*60;
+    datapoints(:,1) = datapoints(:,1);%*60;
     plot(datapoints(:,1),smoth1);
     hold on
     plot(datapoints(:,1),smoth2);
-    plot(datapoints(:,1),functionSystem(datapoints(:,1)));
+    %plot(datapoints(:,1),functionSystem(datapoints(:,1)));
     clearvars f1 f2
     usedType = FittingTypes{i};
     
     try
-        if(isequal(usedType,myfittype))
+        if(isequal(usedType,approchingfittype))
             diff = max(smoth1) - min(smoth1);
             plusminus = sign(smoth1(1) - smoth1(end));
             f1 = fit(datapoints(:,1),smoth1,usedType,'StartPoint',[diff 0.02 * plusminus 0]);
+        elseif(isequal(usedType,expon2))
+            diff = max(smoth1) - min(smoth1);
+            plusminus = sign(smoth1(end) - smoth1(1));
+            f1 = fit(datapoints(:,1),smoth1,usedType,'StartPoint',[diff * 2 0.02 * plusminus 0],'Upper',[diff*2 1 diff*2],'Lower',[-diff*2 -1 0]);
         else
             f1 = fit(datapoints(:,1),smoth1,usedType);
         end
         plot(datapoints(:,1),f1(datapoints(:,1)));
         fits{i,1} = f1;
-    catch
+    catch e
         disp("Error:" + i + "," + 1);
     end
     
     try
-        if(isequal(usedType,myfittype))
+        if(isequal(usedType,approchingfittype))
             diff = max(smoth2) - min(smoth2);
             plusminus = sign(smoth2(1) - smoth2(end));
-            f2 = fit(datapoints(:,1),smoth2,usedType,'StartPoint',[diff 0.02 * plusminus 0]);
+            f2 = fit(datapoints(:,1),smoth2,usedType,'StartPoint',[diff  0.02 * plusminus 0]);
+        elseif(isequal(usedType,expon2))
+            diff = max(smoth2) - min(smoth2);
+            plusminus = sign(smoth2(end) - smoth2(1));
+            f2 = fit(datapoints(:,1),smoth2,usedType,'StartPoint',[diff * 2 0.02 * plusminus 0],'Upper',[diff*2 1 diff*2],'Lower',[-diff*2 -1 0]);
         else
             f2 = fit(datapoints(:,1),smoth2,usedType);
         end
         plot(datapoints(:,1),f2(datapoints(:,1)));
-        fits{i,2} = f2;
-    catch
+        fits{i,2} = f2; %#ok<*SAGROW>
+    catch e
         disp("Error:" + i + "," + 2);
     end
     legendString = ["data1" "data2"];
     if(exist('f1','var'))
-        if(isequal(usedType,myfittype))
+        if(isequal(usedType,approchingfittype))
             textString =gueltigeStellen(f1.a,3) + "*(1-exp(" +  gueltigeStellen(f1.b,3) + "*(x+ " + gueltigeStellen(f1.c,3) + ")))";
         elseif(isequal(usedType,pol))
             textString = gueltigeStellen(f1.p1,3) + "*x+" + gueltigeStellen(f1.p2,3);
+        elseif(isequal(usedType,expon2))
+            textString = gueltigeStellen(f1.a,3) + "*exp(" +  gueltigeStellen(f1.b,3) + "*x) + " + gueltigeStellen(f1.c,3);
         elseif(isequal(usedType,expon))
             textString = gueltigeStellen(f1.a,3) + "*exp(" +  gueltigeStellen(f1.b,3) + "*x)";
         end
         legendString = [legendString textString];
     end
     if(exist('f2','var'))
-        if(isequal(usedType,myfittype))
+        if(isequal(usedType,approchingfittype))
             textString = gueltigeStellen(f2.a,3) + "*(1-exp(" + gueltigeStellen(f2.b,3) + "*(x+ " + gueltigeStellen(f2.c,3) + ")))";
         elseif(isequal(usedType,pol))
             textString = gueltigeStellen(f2.p1,3) + "*x+" + gueltigeStellen(f2.p2,3);
+        elseif(isequal(usedType,expon2))
+            textString = gueltigeStellen(f2.a,3) + "*exp(" + gueltigeStellen(f2.b,3) + "*x) + " + gueltigeStellen(f2.c,3);
         elseif(isequal(usedType,expon))
             textString = gueltigeStellen(f2.a,3) + "*exp(" + gueltigeStellen(f2.b,3) + "*x)";
-        end
+                end
         legendString = [legendString textString];
     end
     legend(legendString,'Location','northwest');
