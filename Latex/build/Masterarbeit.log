@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.8)  19 MAY 2022 12:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.8)  23 MAY 2022 14:19
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1589,7 +1589,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--251
 
  []
 
-<../Grafiken//Simulation.pdf, id=142, 370.38374pt x 291.0875pt>
+<../Grafiken//Simulation.pdf, id=146, 370.38374pt x 291.0875pt>
 File: ../Grafiken//Simulation.pdf Graphic file (type pdf)
 <use ../Grafiken//Simulation.pdf>
 Package pdftex.def Info: ../Grafiken//Simulation.pdf  used on input line 272.
@@ -1601,13 +1601,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 302--303
  []
 
 [6]
-<../Grafiken//Simulation_fit1.pdf, id=189, 369.58253pt x 290.52663pt>
+<../Grafiken//Simulation_fit1.pdf, id=193, 369.58253pt x 290.52663pt>
 File: ../Grafiken//Simulation_fit1.pdf Graphic file (type pdf)
 <use ../Grafiken//Simulation_fit1.pdf>
 Package pdftex.def Info: ../Grafiken//Simulation_fit1.pdf  used on input line 3
 52.
 (pdftex.def)             Requested size: 386.95897pt x 304.19748pt.
-<../Grafiken//Simulation_fit2.pdf, id=190, 369.58253pt x 290.52663pt>
+<../Grafiken//Simulation_fit2.pdf, id=194, 369.58253pt x 290.52663pt>
 File: ../Grafiken//Simulation_fit2.pdf Graphic file (type pdf)
 <use ../Grafiken//Simulation_fit2.pdf>
 Package pdftex.def Info: ../Grafiken//Simulation_fit2.pdf  used on input line 3
@@ -1650,7 +1650,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/V_{ap}-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/V_{ap}-eps-converted-to.pdf, id=231, 602.25pt x 225.84375pt>
+<./Grafiken/V_{ap}-eps-converted-to.pdf, id=235, 602.25pt x 225.84375pt>
 File: ./Grafiken/V_{ap}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/V_{ap}-eps-converted-to.pdf>
 Package pdftex.def Info: ./Grafiken/V_{ap}-eps-converted-to.pdf  used on input 
@@ -1670,7 +1670,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/eta_{ap}-eps-converted-to.pdf): PDF i
 nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/eta_{ap}-eps-converted-to.pdf, id=234, 602.25pt x 225.84375pt>
+<./Grafiken/eta_{ap}-eps-converted-to.pdf, id=238, 602.25pt x 225.84375pt>
 File: ./Grafiken/eta_{ap}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/eta_{ap}-eps-converted-to.pdf>
 Package pdftex.def Info: ./Grafiken/eta_{ap}-eps-converted-to.pdf  used on inpu
@@ -1693,7 +1693,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/t_{ventintervall}-eps-converted-to.pd
 f): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/t_{ventintervall}-eps-converted-to.pdf, id=255, 602.25pt x 225.8437
+<./Grafiken/t_{ventintervall}-eps-converted-to.pdf, id=259, 602.25pt x 225.8437
 5pt>
 File: ./Grafiken/t_{ventintervall}-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1716,7 +1716,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/t_{ventduration}-eps-converted-to.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/t_{ventduration}-eps-converted-to.pdf, id=256, 602.25pt x 225.84375
+<./Grafiken/t_{ventduration}-eps-converted-to.pdf, id=260, 602.25pt x 225.84375
 pt>
 File: ./Grafiken/t_{ventduration}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/t_{ventduration}-eps-converted-to.pdf>
@@ -1737,7 +1737,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/n_{vent}-eps-converted-to.pdf): PDF i
 nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/n_{vent}-eps-converted-to.pdf, id=257, 602.25pt x 225.84375pt>
+<./Grafiken/n_{vent}-eps-converted-to.pdf, id=261, 602.25pt x 225.84375pt>
 File: ./Grafiken/n_{vent}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/n_{vent}-eps-converted-to.pdf>
 Package pdftex.def Info: ./Grafiken/n_{vent}-eps-converted-to.pdf  used on inpu
@@ -1760,7 +1760,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/c_{breath}-eps-converted-to.pdf): PDF
  inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/c_{breath}-eps-converted-to.pdf, id=284, 602.25pt x 225.84375pt>
+<./Grafiken/c_{breath}-eps-converted-to.pdf, id=288, 602.25pt x 225.84375pt>
 File: ./Grafiken/c_{breath}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/c_{breath}-eps-converted-to.pdf>
 Package pdftex.def Info: ./Grafiken/c_{breath}-eps-converted-to.pdf  used on in
@@ -1781,7 +1781,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/V_{breath}-eps-converted-to.pdf): PDF
  inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/V_{breath}-eps-converted-to.pdf, id=285, 602.25pt x 225.84375pt>
+<./Grafiken/V_{breath}-eps-converted-to.pdf, id=289, 602.25pt x 225.84375pt>
 File: ./Grafiken/V_{breath}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/V_{breath}-eps-converted-to.pdf>
 Package pdftex.def Info: ./Grafiken/V_{breath}-eps-converted-to.pdf  used on in
@@ -1803,7 +1803,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/t_{vir}-eps-converted-to.pdf): PDF in
 clusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/t_{vir}-eps-converted-to.pdf, id=302, 602.25pt x 225.84375pt>
+<./Grafiken/t_{vir}-eps-converted-to.pdf, id=306, 602.25pt x 225.84375pt>
 File: ./Grafiken/t_{vir}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/t_{vir}-eps-converted-to.pdf>
 Package pdftex.def Info: ./Grafiken/t_{vir}-eps-converted-to.pdf  used on input
@@ -1823,7 +1823,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/V_{room}-eps-converted-to.pdf): PDF i
 nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/V_{room}-eps-converted-to.pdf, id=303, 602.25pt x 225.84375pt>
+<./Grafiken/V_{room}-eps-converted-to.pdf, id=307, 602.25pt x 225.84375pt>
 File: ./Grafiken/V_{room}-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/V_{room}-eps-converted-to.pdf>
 Package pdftex.def Info: ./Grafiken/V_{room}-eps-converted-to.pdf  used on inpu
@@ -1847,7 +1847,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit001_AG-eps-converted-to.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/timesplit001_AG-eps-converted-to.pdf, id=320, 301.125pt x 225.84375
+<./Grafiken/timesplit001_AG-eps-converted-to.pdf, id=324, 301.125pt x 225.84375
 pt>
 File: ./Grafiken/timesplit001_AG-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/timesplit001_AG-eps-converted-to.pdf>
@@ -1875,7 +1875,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit002_LR-eps-converted-to.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/timesplit002_LR-eps-converted-to.pdf, id=323, 301.125pt x 225.84375
+<./Grafiken/timesplit002_LR-eps-converted-to.pdf, id=327, 301.125pt x 225.84375
 pt>
 File: ./Grafiken/timesplit002_LR-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/timesplit002_LR-eps-converted-to.pdf>
@@ -1908,7 +1908,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit003_LR_AG-eps-converted-to.p
 df): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/timesplit003_LR_AG-eps-converted-to.pdf, id=326, 301.125pt x 225.84
+<./Grafiken/timesplit003_LR_AG-eps-converted-to.pdf, id=330, 301.125pt x 225.84
 375pt>
 File: ./Grafiken/timesplit003_LR_AG-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -1937,7 +1937,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit004_AG-eps-converted-to.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/timesplit004_AG-eps-converted-to.pdf, id=329, 301.125pt x 225.84375
+<./Grafiken/timesplit004_AG-eps-converted-to.pdf, id=333, 301.125pt x 225.84375
 pt>
 File: ./Grafiken/timesplit004_AG-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/timesplit004_AG-eps-converted-to.pdf>
@@ -1973,7 +1973,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit005_Fenster_Tuer-eps-convert
 ed-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> a
 llowed
-<./Grafiken/timesplit005_Fenster_Tuer-eps-converted-to.pdf, id=332, 301.125pt x
+<./Grafiken/timesplit005_Fenster_Tuer-eps-converted-to.pdf, id=336, 301.125pt x
  225.84375pt>
 File: ./Grafiken/timesplit005_Fenster_Tuer-eps-converted-to.pdf Graphic file (t
 ype pdf)
@@ -2010,7 +2010,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit006_Fenster_Tuer_AG-eps-conv
 erted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
-<./Grafiken/timesplit006_Fenster_Tuer_AG-eps-converted-to.pdf, id=333, 301.125p
+<./Grafiken/timesplit006_Fenster_Tuer_AG-eps-converted-to.pdf, id=337, 301.125p
 t x 225.84375pt>
 File: ./Grafiken/timesplit006_Fenster_Tuer_AG-eps-converted-to.pdf Graphic file
  (type pdf)
@@ -2047,7 +2047,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit007_Fenster_Tuer_LR_AG-eps-c
 onverted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <
 1.5> allowed
-<./Grafiken/timesplit007_Fenster_Tuer_LR_AG-eps-converted-to.pdf, id=336, 301.1
+<./Grafiken/timesplit007_Fenster_Tuer_LR_AG-eps-converted-to.pdf, id=340, 301.1
 25pt x 225.84375pt>
 File: ./Grafiken/timesplit007_Fenster_Tuer_LR_AG-eps-converted-to.pdf Graphic f
 ile (type pdf)
@@ -2081,7 +2081,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit008_LR-eps-converted-to.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<./Grafiken/timesplit008_LR-eps-converted-to.pdf, id=341, 301.125pt x 225.84375
+<./Grafiken/timesplit008_LR-eps-converted-to.pdf, id=345, 301.125pt x 225.84375
 pt>
 File: ./Grafiken/timesplit008_LR-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Grafiken/timesplit008_LR-eps-converted-to.pdf>
@@ -2120,7 +2120,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit009_Fenster_Tuer-eps-convert
 ed-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> a
 llowed
-<./Grafiken/timesplit009_Fenster_Tuer-eps-converted-to.pdf, id=367, 301.125pt x
+<./Grafiken/timesplit009_Fenster_Tuer-eps-converted-to.pdf, id=371, 301.125pt x
  225.84375pt>
 File: ./Grafiken/timesplit009_Fenster_Tuer-eps-converted-to.pdf Graphic file (t
 ype pdf)
@@ -2157,7 +2157,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: pdflatex (file ./Grafiken/timesplit010_Fenster_Tuer_LR-eps-conv
 erted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
-<./Grafiken/timesplit010_Fenster_Tuer_LR-eps-converted-to.pdf, id=368, 301.125p
+<./Grafiken/timesplit010_Fenster_Tuer_LR-eps-converted-to.pdf, id=372, 301.125p
 t x 225.84375pt>
 File: ./Grafiken/timesplit010_Fenster_Tuer_LR-eps-converted-to.pdf Graphic file
  (type pdf)
@@ -2183,8 +2183,31 @@ Package acronym Info: Label `acro:AG' newly defined as it shall be overridden
 although it is yet undefined on input line 596.
  [17 <./Grafiken/timesplit009_Fenster_Tuer-eps-converted-to.pdf> <./Grafiken/ti
 mesplit010_Fenster_Tuer_LR-eps-converted-to.pdf>] [18]
-No file Masterarbeit.bbl.
 chapter 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 639--645
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 639--645
+
+ []
+
+[19
+
+] (D:\Dokumente_Florian_Jacob_OVGU\Masterarbeit\Latex\build\Masterarbeit.bbl
+chapter 4.
+
+Underfull \hbox (badness 4467) in paragraph at lines 9--14
+[]\T1/ptm/m/n/12 A. Sie-vers.  Kli-ma-da-ten deutsch-land.  []$https : / / www 
+. dwd . de / DE / leistungen / 
+ []
+
+) [20
+
+]
+chapter 5.
 (D:\Dokumente_Florian_Jacob_OVGU\Masterarbeit\Latex\build\Masterarbeit.lof
 Overfull \hbox (10.57951pt too wide) in paragraph at lines 21--21
  [][] [][]\T1/ptm/m/n/12 Entwicklung der Partikel-Konzentration über der Zeit, 
@@ -2207,10 +2230,10 @@ Fen-ster und Tür ge-öff-net, [][] läuft[] [][]
 \tf@lof=\write6
 \openout6 = `Masterarbeit.lof'.
 
- [19
+ [21
 
 ]
-chapter 4.
+chapter 6.
 (D:\Dokumente_Florian_Jacob_OVGU\Masterarbeit\Latex\build\Masterarbeit.lot)
 \tf@lot=\write7
 \openout7 = `Masterarbeit.lot'.
@@ -2221,7 +2244,7 @@ Package transparent Warning: Rerun to get transparencies right.
 
 
 AED: lastpage setting LastPage
-[20
+[22
 
 ] (D:\Dokumente_Florian_Jacob_OVGU\Masterarbeit\Latex\build\Masterarbeit.aux)
 
@@ -2231,11 +2254,11 @@ Package rerunfilecheck Info: File `Masterarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 39645 strings out of 478582
- 852300 string characters out of 2843401
+ 39665 strings out of 478582
+ 852717 string characters out of 2843401
  1276027 words of memory out of 3000000
- 56974 multiletter control sequences out of 15000+600000
- 514251 words of font info for 84 fonts, out of 8000000 for 9000
+ 56983 multiletter control sequences out of 15000+600000
+ 517099 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,15n,106p,10637b,902s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\fljacob\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ec
@@ -2259,9 +2282,9 @@ Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/fljacob/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/fljacob/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
 Output written on D:\Dokumente_Florian_Jacob_OVGU\Masterarbeit\Latex\build\Mast
-erarbeit.pdf (23 pages, 1106019 bytes).
+erarbeit.pdf (25 pages, 1125606 bytes).
 PDF statistics:
- 775 PDF objects out of 1000 (max. 8388607)
- 115 named destinations out of 1000 (max. 500000)
- 384 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 818 PDF objects out of 1000 (max. 8388607)
+ 123 named destinations out of 1000 (max. 500000)
+ 400 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -626,7 +626,29 @@ Mit Hilfe von \autoref{Abb: timesplit005_Fenster_Tuer} kann auch der Lüftungsfa
 n\tief{vent} = \frac{\SI{0.155}{\per\minute} + \SI{0.165}{\per\minute}}{2} \cdot \SI{60}{\minute\per\hour}
 n\tief{vent} = \SI{9.6}{\per\hour}
 \end{align}
-Es ist jedoch zu beachten, das meist nicht richtig quer gelüftet wird, sondern die Tür(-en) geschlossen bleiben.
+Es ist jedoch zu beachten, das meist nicht richtig quer gelüftet wird, sondern die Tür(-en) geschlossen bleiben. In einem Zweiten versuch wurden daher verschiedene Arten zu lüften untersucht. \citep[S. 927]{recknagel2009taschenbuch}
+
+
+
+\chapter{Wärmeverluste durch Lüftung}
+Durch das häufige Lüften im Raum kommt es zu relativ hohen Wärmeverlusten. Da die Ausgetauschte Luft auch die Wärme mit sich trägt, kann man über die notwendige Lüftung die Verluste bestimmen. Für das allgemeine Verhalten bietet sich wieder eine DGL an.
+\begin{align}
+\frac{dT}{dt} = \dot{W}\tief{heiz} + \dot{W}\tief{p} - (T\tief{out}(t) - T\tief{in})n\tief{vent}\frac{t\tief{ventduration}}{t\tief{ventintervall}}
+\end{align}
+
+\begin{parameterNames}
+$\dot{Q}\tief{heiz}$ & Wärmeleistung durch Heizung\\
+$\dot{W}\tief{p}$ & Wärmeleistung durch Personen im Raum\\
+$T\tief{out}$ & Außentemperatur\\
+$T\tief{in}$ & Innentemperatur
+\end{parameterNames}
+
+Ideal betrachtet sollte sich die Raumtemperatur nicht ändern, das heißt, die zeitliche Ableitung geht gegen 0. Damit lässt sich die Heizleistung berechnen nach:
+\begin{align}
+\dot{W}\tief{heiz} =(T\tief{out}(t) - T\tief{in}) n\tief{vent} \frac{t\tief{ventduration}}{t\tief{ventintervall}} -  \dot{W}\tief{p}
+\end{align} 
+
+Da die Außentemperatur nur linear abhängig ist, kann hier auch eine Jahresdurchschnitt gebildet werden. Mit den Daten aus \cite{DWD_MD} ergibt sich ein Jahresmittel von $\SI{8.78}{\celsius}$. Die Innentemperatur soll bei $22\pm \SI{1}{\celsius}$ \cite[S. 109]{recknagel2009taschenbuch} liegen. Die Wärmeleistung eines Menschen liegt bei 60 - 80 Watt, abhängig von der Aktivität und anderen Faktoren.
 
 
 
