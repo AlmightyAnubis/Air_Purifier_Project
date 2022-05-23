@@ -1,3 +1,15 @@
-*build
 *Testarea
-!*.pdf
+
+*.log
+*.aux
+*.bbl
+*.blg
+*.lof
+*.lot
+*.out
+*.sub
+*.syc
+*.sym
+*.toc
+*.gz
+*.suc
