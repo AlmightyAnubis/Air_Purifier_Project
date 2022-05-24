@@ -633,22 +633,28 @@ Es ist jedoch zu beachten, das meist nicht richtig quer gelüftet wird, sondern 
 \chapter{Wärmeverluste durch Lüftung}
 Durch das häufige Lüften im Raum kommt es zu relativ hohen Wärmeverlusten. Da die Ausgetauschte Luft auch die Wärme mit sich trägt, kann man über die notwendige Lüftung die Verluste bestimmen. Für das allgemeine Verhalten bietet sich wieder eine DGL an.
 \begin{align}
-\frac{dT}{dt} = \dot{W}\tief{heiz} + \dot{W}\tief{p} - (T\tief{out}(t) - T\tief{in})n\tief{vent}\frac{t\tief{ventduration}}{t\tief{ventintervall}}
+\frac{dT}{dt} = \dot{W}\tief{heiz} + \dot{W}\tief{p} - (T\tief{in} - T\tief{out}(t))c\tief{p} \varrho n\tief{vent}\frac{t\tief{ventduration}}{t\tief{ventintervall}}
 \end{align}
 
 \begin{parameterNames}
 $\dot{Q}\tief{heiz}$ & Wärmeleistung durch Heizung\\
 $\dot{W}\tief{p}$ & Wärmeleistung durch Personen im Raum\\
 $T\tief{out}$ & Außentemperatur\\
-$T\tief{in}$ & Innentemperatur
+$T\tief{in}$ & Innentemperatur\\
+$c\tief{p}$ & Wärmekapazität Luft\\
+$\varrho$ & Dichte Luft 
 \end{parameterNames}
 
 Ideal betrachtet sollte sich die Raumtemperatur nicht ändern, das heißt, die zeitliche Ableitung geht gegen 0. Damit lässt sich die Heizleistung berechnen nach:
 \begin{align}
-\dot{W}\tief{heiz} =(T\tief{out}(t) - T\tief{in}) n\tief{vent} \frac{t\tief{ventduration}}{t\tief{ventintervall}} -  \dot{W}\tief{p}
+\dot{W}\tief{heiz} =(T\tief{out}(t) - T\tief{in}) c\tief{p} \varrho V\tief{room} n\tief{vent} \frac{t\tief{ventduration}}{t\tief{ventintervall}} -  \dot{W}\tief{p}
 \end{align} 
 
-Da die Außentemperatur nur linear abhängig ist, kann hier auch eine Jahresdurchschnitt gebildet werden. Mit den Daten aus \cite{DWD_MD} ergibt sich ein Jahresmittel von $\SI{8.78}{\celsius}$. Die Innentemperatur soll bei $22\pm \SI{1}{\celsius}$ \cite[S. 109]{recknagel2009taschenbuch} liegen. Die Wärmeleistung eines Menschen liegt bei 60 - 80 Watt, abhängig von der Aktivität und anderen Faktoren.
+Da die Außentemperatur nur linear abhängig ist, kann hier auch eine Jahresdurchschnitt gebildet werden. Mit den Daten aus \cite{DWD_MD} ergibt sich ein Jahresmittel von $\SI{8.78}{\celsius}$. Die Innentemperatur soll bei $22\pm \SI{1}{\celsius}$ \cite[S. 109]{recknagel2009taschenbuch} liegen. Die Wärmeleistung eines Menschen liegt bei 60 - 80 Watt in Ruhe. Eine Schulklasse besteht aus 20-25 Schülern. Damit ergibt sich:
+\begin{align}
+\dot{W}\tief{heiz} =(22 - 8.78)\SI{}{\kelvin} \cdot \SI{1}{\kilo\joule\per\kilo\gram\per\kelvin} \cdot \SI{1,225}{\kilo\gram\per\cubic\meter} \cdot \SI{200}{\cubic\meter} \cdot \SI{9.6}{\per\hour} \cdot \frac{5}{25} - 22 \cdot \SI{70}{\watt}
+\end{align}
+
 
 
 

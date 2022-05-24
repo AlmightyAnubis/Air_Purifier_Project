@@ -53,7 +53,7 @@ pol =fittype("poly1");
 FittingTypes = {pol expon approchingfittype pol expon  approchingfittype expon expon expon expon};
 
 for i = 1:length(splits)
-    subplot(xsize,ysize,i);
+    %subplot(xsize,ysize,i);
     datapoints = splits{i};
     smoth1 = smooth(datapoints(:,2),0.001);
     smoth2 = smooth(datapoints(:,3),0.001);
@@ -139,16 +139,16 @@ for i = 1:length(splits)
     ylim([0 maxValue*3/2]);
     
     fh = gcf;
-    %fh.Position(1) = 100;
-    %fh.Position(2) = 100;
-    %fh.Position(3) = 400;
-    %fh.Position(4) = 300;
+    fh.Position(1) = 100;
+    fh.Position(2) = 100;
+    fh.Position(3) = 400;
+    fh.Position(4) = 300;
     drawnow
     %pause(1);
     
     name = strjoin(textArray(setting(i,:)),"_");
     str = sprintf('%03d',i);
-    %hgexport(fh,'Testarea\' + "timesplit" + str + "_" + name + '.eps')
+    hgexport(fh,'Testarea\' + "timesplit" + str + "_" + name + '.eps')
 end
 
 

@@ -22,4 +22,8 @@ y= [10361 202204    1   -5.4    3.4    8.8   13.9   22.4  180.1    5.7   30.8   
 y = str2double(y);
 T = array2table(y,"VariableNames",x);
 temp = T.('TMM');
-mean(temp)
+t_med = mean(temp);
+q_out = (22 - t_med) * 1000 * 1.225 * 200 * 9.6/60/60 * 5/25;
+q_p = 25*70;
+dq = q_out - q_p;
+
